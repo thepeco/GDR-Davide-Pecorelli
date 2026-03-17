@@ -8,6 +8,38 @@ package basketgdr;
  *
  * @author pecorelli.davide
  */
-public class Kuroko {
+public class Kuroko extends Personaggio {
     
-}
+    private Nemico n;
+    private boolean phantomShootAttivo;
+    
+    public Kuroko (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean phantomShootAttivo, Nemico n){
+        
+        super(fozaFisica,sete,stanchezza,nome,dannoPersonaggio);
+        
+        this.forzaFisica = forzaFisica;
+        this.sete = sete;
+        this.stanchezza = stanchezza;
+        this.nome = nome;
+        this.dannoPersonaggio = dannoPersonaggio;
+        this.phantomShootAttivo = phantomShootAttivo;
+        this.n = n;
+    }
+    
+    @Override
+    public void abilitàSpeciale (Nemico n, int dannoPersonaggio){
+    
+        this.n = n;
+        this.dannoPersonaggio = dannoPersonaggio;
+        
+    }
+    
+    public void nonMollare(){
+        
+    }
+    
+    public void phantomShoot(Nemico n, int dannoPersonaggio){
+        
+    }
+  }
+

@@ -10,4 +10,29 @@ package basketgdr;
  */
 public class Gioco {
     
+    private Personaggio player;
+    private Nemico enemie;
+    
+    public void Gioco (Personaggio playerCorrente, Nemico enemieCorrente){
+        
+        player = playerCorrente;
+        enemie = enemieCorrente;
+    }
+    
+    public void selezionaPersonaggio (int sceltaP){
+        
+        
+    }
+    
+    public void selezionaNemico (int sceltaN){
+        
+    }
+    
+    public void creaSfida(){
+        
+    }
+    
+    public void checkVittoria(){
+        
+    }
 }
