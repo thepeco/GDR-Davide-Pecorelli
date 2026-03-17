@@ -1,0 +1,120 @@
+---
+config:
+  layout: elk
+---
+classDiagram
+direction TB
+    class FileManager {
+	    +salvaPartita()
+    }
+
+    class Interfaccia {
+    }
+
+    class Personaggio {
+	    -int forzaFisica
+	    -int sete
+	    -int stanchezza
+	    -int bibita
+	    -int snack
+	    -int dannoP
+	    -String nome
+	    +Personaggio(int forzaFisica, int sete, int stanchezza,String nome, int dannoP)
+	    +subisciDanno(int danno)
+	    +beviBibita() int
+	    +mangiaSnack() int
+	    +AbilitaSpeciale(Nemico n, int dannoP) void
+	    +ricaricaStatistiche()
+    }
+
+    class Kuroko {
+	    -bool phantomShotAttivo
+	    +Kuroko(int ForzaFisica, String nome, int bibita, int snack,int dannoP, bool phantomShotAttivo)
+	    +AbilitaSpeciale(Nemico n, int dannoP)
+	    +nonMollare()
+	    +phantomShot(Nemico n, int dannoP)
+    }
+
+    class Aomine {
+	    -int dannoP
+	    -bool zoneAttiva
+	    +Aomine(int ForzaFisica, String nome, int bibita, int snack,int dannoP, bool zoneAttiva)
+	    +AbilitaSpeciale(Nemico n,int dannoP)
+	    +attivaZone()
+    }
+
+    class Kagami {
+	    -int dannoP
+	    -bool zoneAttiva
+	    +Kagami(int ForzaFisica, String nome, int bibita, int snack,int dannoP, bool zoneAttiva)
+	    +AbilitaSpeciale(Nemico n, int dannoP)
+	    +attivaZone()
+    }
+
+    class Akashi {
+	    -int dannoP
+	    -bool zoneAttiva
+	    +Akashi(int ForzaFisica, String nome, int bibita, int snack,int dannoP, bool zoneAttiva)
+	    +AbilitaSpeciale(Nemico n, int dannoP)
+	    +attivaZone()
+    }
+
+    class Nemico {
+	    -int vitaNemico
+	    -ArrayList listaNemici
+	    -int dannoBase
+	    +Nemico(int vitaNemico, int dannoBase)
+	    +setVita(int vitaNemico)
+	    +reazioneNemico(Personaggio p)
+    }
+
+    class Gioco {
+	    -Personaggio player
+	    -Nemico nemicoCorrente
+	    +Gioco(Personaggio player, Enemie nemicoCorrente)
+	    +selezionaPersonaggio(int sceltaP)
+	    +generaNemico(int sceltaN)
+	    +creaSfida()
+	    +checkVittoria()
+    }
+
+    class Sfida {
+	    - Personaggio p
+	    - Nemico n
+	    + Sfida(Personaggio p, Nemico n)
+	    +generaNemico(int sceltaN)
+	    + attacco()
+    }
+
+    class Evento {
+	    -int puntiV
+	    +Evento()
+	    +eseguiEvento(int puntiV)
+    }
+
+    class EventoRigenera {
+	    -int puntiVitaRecuperati
+	    +EventoRigenera(int puntiVitaRecuperati)
+	    + eseguiEvento(int puntiV)
+    }
+
+    class EventoSfida {
+	    -int puntiVitaPersi
+	    +EventoSfida(int puntiVitaPersi)
+	    +eseguiEvento(int puntiV)
+    }
+
+    Personaggio <|-- Kuroko
+    Personaggio <|-- Aomine
+    Personaggio <|-- Kagami
+    Personaggio <|-- Akashi
+    Gioco o-- Personaggio
+    Gioco -- FileManager
+    Gioco o-- Nemico
+    Gioco -- Interfaccia
+    Evento <|-- EventoRigenera
+    Evento <|-- EventoSfida
+    Gioco -- Evento
+    Gioco -- Sfida
+    Sfida -- Nemico
+    Sfida -- Personaggio
