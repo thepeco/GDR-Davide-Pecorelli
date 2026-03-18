@@ -27,14 +27,13 @@ public class Kuroko extends Personaggio {
     }
     
     @Override
-    public void abilitàSpeciale (Nemico n, int dannoPersonaggio){
+    public void abilitàSpeciale (Nemico n, int dannoPersonaggio){ //Devo collegarci la vita del nemico???
     
-        this.n = n;
-        this.dannoPersonaggio = dannoPersonaggio;
+        //Togli la vita del nemico usando il dannoPersonaggio
         
     }
     
-    public void nonMollare(){
+    public void nonMollare(){ //Al click del tasto non mollare puoi usare il tiro PhantomShot (quello in basse)
         
     }
     

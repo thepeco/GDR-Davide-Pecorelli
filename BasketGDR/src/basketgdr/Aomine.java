@@ -35,5 +35,9 @@ public class Aomine extends Personaggio{
     
     public void attivaZone(){
         
+        forzaFisica = forzaFisica * 2;
+        sete = 0;
+        stanchezza = 0;
+        dannoPersonaggio = 50;
     }
 }
