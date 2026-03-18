@@ -8,16 +8,20 @@ package basketgdr;
  *
  * @author pecorelli.davide
  */
-public class Evento {
+public class EventoSfida extends Evento {
     
-    protected int puntiV;
+    private int puntiVitaPersi;
     
-    public Evento(int puntiV){
+    public EventoSfida (int puntiV, int puntiVitaPersi){
+        
+        super(puntiV);
         
         this.puntiV = puntiV;
+        this.puntiVitaPersi = puntiVitaPersi;
     }
     
-    public void eseguiEvento(int puntiVita){
+    public void eseguiEvento(int puntiVita){ //Devo togliere la vita al personaggio, quindi vediamo
+        
         
     }
 }
