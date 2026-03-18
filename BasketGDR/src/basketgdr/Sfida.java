@@ -10,5 +10,21 @@ package basketgdr;
  */
 public class Sfida {
     
+    private Personaggio p;
+    private Nemico n;
     
+    public Sfida (Personaggio p, Nemico n){
+        
+        this.p = p;
+        this.n = n;
+    }
+    
+    public void generaNemico(int sceltaN){
+        
+        
+    }
+    
+    public void attacco(){ //Attacco del personaggio
+        
+    }
 }

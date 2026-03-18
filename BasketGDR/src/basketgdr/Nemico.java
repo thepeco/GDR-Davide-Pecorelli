@@ -10,4 +10,5 @@ package basketgdr;
  */
 public class Nemico {
     
+    
 }
