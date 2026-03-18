@@ -20,8 +20,18 @@ public class Nemico {
         this.dannoBase = dannoBase;
     }
     
-    public void setVita(int vitaNemico){
+    public void setVita(int vitaPersa){ //Perde vita
         
+        vitaNemico = vitaNemico - vitaPersa;
+        
+        if(vitaNemico == 0){
+            
+            System.out.println("Il nemico è morto");
+        }
+        
+        else{
+             System.out.println("Ancora vivo");
+        }
         
     }
     

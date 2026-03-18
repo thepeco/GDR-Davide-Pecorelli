@@ -29,6 +29,7 @@ public class Akashi extends Personaggio{
     @Override
     public void abilitàSpeciale(Nemico n, int dannoP){
         
+        n.setVita(35);
     }
     
     public void attivaZone(){

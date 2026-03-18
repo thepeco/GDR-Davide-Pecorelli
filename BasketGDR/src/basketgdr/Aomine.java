@@ -31,6 +31,8 @@ public class Aomine extends Personaggio{
     
     public void abilitàSpeciale(Nemico n, int dannoPersonaggio){
         
+        n.setVita(35);
+        
     }
     
     public void attivaZone(){

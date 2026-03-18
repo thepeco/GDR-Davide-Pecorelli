@@ -31,13 +31,16 @@ public class Kuroko extends Personaggio {
     
         //Togli la vita del nemico usando il dannoPersonaggio
         
+        n.setVita(20);
+        
     }
     
     public void nonMollare(){ //Al click del tasto non mollare puoi usare il tiro PhantomShot (quello in basse)
         
     }
     
-    public void phantomShoot(Nemico n, int dannoPersonaggio){
+    public void phantomShoot(Nemico n, int dannoPersonaggio){ //Devo collegarci la vita del nemico???
+        
         
     }
   }

@@ -31,6 +31,7 @@ public class Kagami extends Personaggio {
     
     public void abilitàSpeciale(Nemico n, int dannoP){
         
+        n.setVita(30);
     }
     
     public void attivaZone(){
