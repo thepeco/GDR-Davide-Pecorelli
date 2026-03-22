@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package basketgdr;
-
+import java.io.File;
+import java.util.*;
 /**
  *
  * @author pecorelli.davide
@@ -12,6 +13,8 @@ public class Gioco {
     
     private Personaggio player;
     private Nemico enemie;
+    ArrayList <String> listaNemici = new ArrayList();
+    String nomeEstratto;
     
     public void Gioco (Personaggio playerCorrente, Nemico enemieCorrente){
         
@@ -21,10 +24,22 @@ public class Gioco {
     
     public void selezionaPersonaggio (int sceltaP){
         
-        
+        //Capire come fare a scegliere il personaggio
     }
     
-    public void selezionaNemico (int sceltaN){
+    public void selezionaNemico (int sceltaN) throws Exception{ //Estrazione casuale nemici
+        
+        Scanner s = new Scanner(new File("listaNemici.txt"));
+        ArrayList<String> nemici = new ArrayList<>();
+        
+        Collections.shuffle(nemici);
+        System.out.println("Nome: " + nemici.get(0)); //Dove gestisco gli amici? qui oppure su un altra classe?
+        nomeEstratto = nemici.get(0);
+        
+        if(nomeEstratto == "Satsuki_Momoi" || nomeEstratto == "Riko_Aida"){ //gestisco qua gli amici e dico questo!
+            
+            player.ricaricaStatistiche();
+        }
         
     }
     

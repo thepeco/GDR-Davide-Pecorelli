@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package basketgdr;
- import java.util.ArrayList;
+
 /**
  *
  * @author pecorelli.davide
@@ -11,7 +11,7 @@ package basketgdr;
 public class Nemico {
     
     private int vitaNemico;
-    ArrayList <String> listaNemici = new ArrayList();
+    
     private int dannoBase;
     
     public Nemico (int vitaNemico,int dannoBase){
