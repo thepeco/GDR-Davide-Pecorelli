@@ -28,9 +28,21 @@ public class Kagami extends Personaggio {
     }
     
     @Override
+    public void setBibita(int Numerobibite){
+        
+        bibita = Numerobibite;
+    }
     
+    @Override
+    public void setSnack (int NumeroSnack){
+        
+        snack = NumeroSnack;
+    }
+    
+    @Override
     public void abilitàSpeciale(Nemico n, int dannoP){
         
+        System.out.println("Meteor Jam!");
         n.setVita(30);
     }
     

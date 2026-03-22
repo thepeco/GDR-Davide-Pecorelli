@@ -28,9 +28,22 @@ public class Aomine extends Personaggio{
     }
     
     @Override
+    public void setBibita(int Numerobibite){
+        
+        bibita = Numerobibite;
+    }
+    
+    @Override
+    public void setSnack (int NumeroSnack){
+        
+        snack = NumeroSnack;
+    }
+    
+    @Override
     
     public void abilitàSpeciale(Nemico n, int dannoPersonaggio){
         
+        System.out.println("Formless Shot!");
         n.setVita(35);
         
     }

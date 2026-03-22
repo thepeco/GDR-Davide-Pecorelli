@@ -27,10 +27,22 @@ public class Kuroko extends Personaggio {
     }
     
     @Override
+    public void setBibita(int Numerobibite){ //In base a chi ha e non ha bibite/snack le settiamo su questi metodi 
+        
+        bibita = Numerobibite;
+    }
+    
+    @Override
+    public void setSnack (int NumeroSnack){ //In base a chi ha e non ha bibite/snack le settiamo su questi metodi 
+        
+        snack = NumeroSnack;
+    }
+    
+    @Override
     public void abilitàSpeciale (Nemico n, int dannoPersonaggio){ //Devo collegarci la vita del nemico???
     
+        System.out.println("Vanishing Drive!");
         //Togli la vita del nemico usando il dannoPersonaggio
-        
         n.setVita(20);
         
     }

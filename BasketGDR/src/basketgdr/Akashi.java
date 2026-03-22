@@ -27,8 +27,21 @@ public class Akashi extends Personaggio{
     }
     
     @Override
+    public void setBibita(int Numerobibite){
+        
+        bibita = Numerobibite;
+    }
+    
+    @Override
+    public void setSnack (int NumeroSnack){
+        
+        snack = NumeroSnack;
+    }
+    
+    @Override
     public void abilitàSpeciale(Nemico n, int dannoP){
         
+        System.out.println("Ankle Breaker!");
         n.setVita(35);
     }
     
