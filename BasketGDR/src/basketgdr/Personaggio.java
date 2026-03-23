@@ -28,6 +28,11 @@ public class Personaggio {
         this.dannoPersonaggio = dannoPersonaggio;
     }
     
+    public String getNome(){
+        
+        return nome;
+    }
+    
     public void setBibita(int Numerobibite){ //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
         
         bibita = Numerobibite;

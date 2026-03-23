@@ -12,6 +12,7 @@ public class Sfida {
     
     private Personaggio p;
     private Nemico n;
+    private EventoSfida es;
     
     public Sfida (Personaggio p, Nemico n){
         
@@ -19,12 +20,33 @@ public class Sfida {
         this.n = n;
     }
     
-    public void generaNemico(int sceltaN){
-        
+    public void generaNemico(int sceltaN){ // capire se serve veramente
         
     }
     
     public void attacco(){ //Attacco del personaggio
         
+        if("Kuroko".equals(p.getNome())){
+            
+        es.eseguiEvento(85);
+        
+      }
+        
+        if("Akashi".equals(p.getNome())){
+            
+            es.eseguiEvento(85);
+        }
+        
+        if("Aomine".equals(p.getNome())){
+            
+            es.eseguiEvento(95);
+            
+        }
+        
+        if("Kagami".equals(p.getNome())){
+            
+            es.eseguiEvento(95);
+            
+        }
     }
 }

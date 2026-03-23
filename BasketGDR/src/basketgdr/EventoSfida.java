@@ -23,5 +23,6 @@ public class EventoSfida extends Evento {
     public void eseguiEvento(int puntiVita){ //Devo togliere la vita al personaggio, quindi vediamo
         
         
+        
     }
 }

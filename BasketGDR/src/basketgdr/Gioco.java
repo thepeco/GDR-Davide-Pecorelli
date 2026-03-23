@@ -33,7 +33,7 @@ public class Gioco {
         ArrayList<String> nemici = new ArrayList<>();
         
         Collections.shuffle(nemici);
-        System.out.println("Nome: " + nemici.get(0)); //Dove gestisco gli amici? qui oppure su un altra classe?
+        System.out.println("Nome: " + nemici.get(0)); 
         nomeEstratto = nemici.get(0);
         
         if(nomeEstratto == "Satsuki_Momoi" || nomeEstratto == "Riko_Aida"){ //gestisco qua gli amici e dico questo!
