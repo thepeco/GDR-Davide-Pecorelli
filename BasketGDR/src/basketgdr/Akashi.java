@@ -39,7 +39,7 @@ public class Akashi extends Personaggio{
     }
     
     @Override
-    public void abilitàSpeciale(){
+    public void abilitàSpeciale(Nemico n){
         
         System.out.println("Ankle Breaker!");
         n.setVita(35);

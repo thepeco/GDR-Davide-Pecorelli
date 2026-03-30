@@ -4,24 +4,19 @@
  */
 package basketgdr;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author pecorelli.davide
  */
-public class Interfaccia extends javax.swing.JFrame {
+public class InterfacciaSfida extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaccia.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfacciaSfida.class.getName());
 
     /**
-     * Creates new form Interfaccia
+     * Creates new form InterfacciaSfida
      */
-    public Interfaccia() {
-        
+    public InterfacciaSfida() {
         initComponents();
-        jLabel1.setIcon (new ImageIcon(new ImageIcon("SchermataIniziale.png").getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH)));
     }
 
     /**
@@ -33,14 +28,18 @@ public class Interfaccia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(230, 90, 150, 150);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -67,10 +66,9 @@ public class Interfaccia extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interfaccia().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new InterfacciaSfida().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

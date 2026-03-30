@@ -41,7 +41,7 @@ public class Aomine extends Personaggio{
     
     @Override
     
-    public void abilitàSpeciale(){
+    public void abilitàSpeciale(Nemico n){
         
         System.out.println("Formless Shot!");
         n.setVita(35);
