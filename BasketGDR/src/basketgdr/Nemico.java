@@ -11,7 +11,7 @@ package basketgdr;
 public class Nemico {
     
     private int vitaNemico;
-    
+    private boolean risposta;
     private int dannoBase;
     
     public Nemico (int vitaNemico,int dannoBase){
@@ -20,22 +20,28 @@ public class Nemico {
         this.dannoBase = dannoBase;
     }
     
-    public void setVita(int vitaPersa){ //Perde vita
+    public boolean setVita(int vitaPersa){ //Perde vita
         
-        vitaNemico = vitaNemico - vitaPersa;
+          vitaNemico = vitaNemico - vitaPersa;
         
-        if(vitaNemico == 0){
+        if(vitaNemico <= 0){
             
+            risposta = true;
             System.out.println("Il nemico è morto");
         }
         
         else{
+            
+             risposta = false;
              System.out.println("Ancora vivo");
         }
         
+        return risposta;
     }
     
     public void reazioneNemico (Personaggio p){
+        
+        p.subisciDanno(dannoBase);
         
     }
 }

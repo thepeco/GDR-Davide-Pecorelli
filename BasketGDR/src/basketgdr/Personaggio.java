@@ -102,11 +102,9 @@ public class Personaggio {
         return snack; //Anche la stanchezza viene aggiornata
   }
     
-    public void abilitàSpeciale (Nemico n, int dannoPersonaggio){ //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
+    public void abilitàSpeciale (Nemico n){ //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
         
-        this.n = n;
-        this.dannoPersonaggio = dannoPersonaggio;
-        
+        n.setVita(dannoPersonaggio);
         
     }
     

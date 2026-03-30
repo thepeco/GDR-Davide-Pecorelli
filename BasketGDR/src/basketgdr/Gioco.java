@@ -15,6 +15,7 @@ public class Gioco {
     private Nemico enemie;
     ArrayList <String> listaNemici = new ArrayList();
     String nomeEstratto;
+    private Sfida s;
     
     public void Gioco (Personaggio playerCorrente, Nemico enemieCorrente){
         
@@ -44,6 +45,8 @@ public class Gioco {
     }
     
     public void creaSfida(){
+        
+       // s.Sfida(player,enemie);
         
     }
     

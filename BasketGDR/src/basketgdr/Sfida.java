@@ -13,6 +13,8 @@ public class Sfida {
     private Personaggio p;
     private Nemico n;
     private EventoSfida es;
+    private boolean vivoN;
+    private boolean vivoP;
     
     public Sfida (Personaggio p, Nemico n){
         
@@ -24,29 +26,27 @@ public class Sfida {
         
     }
     
-    public void attacco(){ //Attacco del personaggio
+    public void combattimentoBase(){ //Attacco del personaggio
         
-        if("Kuroko".equals(p.getNome())){
-            
-        es.eseguiEvento(85);
+        /*
+        vivoN = p.abilitàSpeciale(n);
+        vivoP = n.reazioneNemico(p);
         
-      }
-        
-        if("Akashi".equals(p.getNome())){
-            
-            es.eseguiEvento(85);
+        if(vivoN == true){
+         System.out.println("Morto");
         }
         
-        if("Aomine".equals(p.getNome())){
-            
-            es.eseguiEvento(95);
-            
+        else{
+        System.out.println("Vivo");
         }
+         */
         
-        if("Kagami".equals(p.getNome())){
-            
-            es.eseguiEvento(95);
-            
-        }
+        
+        
+    }
+    
+    public void combattimentoSpeciale(){
+        
+        
     }
 }
