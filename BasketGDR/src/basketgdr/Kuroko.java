@@ -39,11 +39,11 @@ public class Kuroko extends Personaggio {
     }
     
     @Override
-    public void abilitàSpeciale (Nemico n){ //Devo collegarci la vita del nemico???
+    public boolean abilitàSpeciale (Nemico n){ //Devo collegarci la vita del nemico???
     
         System.out.println("Vanishing Drive!");
         //Togli la vita del nemico usando il dannoPersonaggio
-        n.setVita(20);
+        return n.setVita(20);
         
     }
     

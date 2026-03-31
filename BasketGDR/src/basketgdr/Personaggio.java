@@ -18,6 +18,7 @@ public class Personaggio {
     protected int dannoPersonaggio;
     protected String nome;
     protected Nemico n;
+    private boolean rispostaPersonaggio;
     
     public Personaggio (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio){
         
@@ -44,11 +45,21 @@ public class Personaggio {
         snack = NumeroSnack;
     }
     
-    public int subisciDanno (int dannoPreso){
+    public boolean subisciDanno (int dannoPreso){
         
-        forzaFisica = forzaFisica -dannoPreso;
+        forzaFisica = forzaFisica - dannoPreso;
         
-        return forzaFisica;
+        if(forzaFisica <= 0){
+            
+            rispostaPersonaggio = true;
+        }
+        
+        else{
+            
+            rispostaPersonaggio = false;
+        }
+        
+        return rispostaPersonaggio;
     }
     
     public int beviBibita (){
@@ -102,9 +113,9 @@ public class Personaggio {
         return snack; //Anche la stanchezza viene aggiornata
   }
     
-    public void abilitàSpeciale (Nemico n){ //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
+    public boolean abilitàSpeciale (Nemico n){ //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
         
-        n.setVita(dannoPersonaggio);
+        return n.setVita(dannoPersonaggio);
         
     }
     

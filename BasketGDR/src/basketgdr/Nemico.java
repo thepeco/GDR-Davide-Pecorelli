@@ -39,9 +39,9 @@ public class Nemico {
         return risposta;
     }
     
-    public void reazioneNemico (Personaggio p){
+    public boolean reazioneNemico (Personaggio p){
         
-        p.subisciDanno(dannoBase);
+        return p.subisciDanno(dannoBase);
         
     }
 }

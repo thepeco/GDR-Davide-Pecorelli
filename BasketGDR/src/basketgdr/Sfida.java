@@ -28,7 +28,7 @@ public class Sfida {
     
     public void combattimentoBase(){ //Attacco del personaggio
         
-        /*
+        
         vivoN = p.abilitàSpeciale(n);
         vivoP = n.reazioneNemico(p);
         
@@ -39,7 +39,15 @@ public class Sfida {
         else{
         System.out.println("Vivo");
         }
-         */
+        
+        if(vivoP == true){
+        System.out.println("Morto");
+        }
+        
+        else{
+        System.out.println("Vivo");
+        }
+         
         
         
         

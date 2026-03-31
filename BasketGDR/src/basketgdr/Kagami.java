@@ -40,10 +40,10 @@ public class Kagami extends Personaggio {
     }
     
     @Override
-    public void abilitàSpeciale(Nemico n){
+    public boolean abilitàSpeciale(Nemico n){
         
         System.out.println("Meteor Jam!");
-        n.setVita(30);
+        return n.setVita(30);
     }
     
     public void attivaZone(){
