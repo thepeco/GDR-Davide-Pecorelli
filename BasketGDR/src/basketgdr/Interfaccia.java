@@ -21,7 +21,8 @@ public class Interfaccia extends javax.swing.JFrame {
     public Interfaccia() {
         
         initComponents();
-        jLabel1.setIcon (new ImageIcon(new ImageIcon("SchermataIniziale.png").getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH)));
+        
+        jLabel2.setIcon (new ImageIcon(new ImageIcon("Sfondo.png").getImage().getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH)));
     }
 
     /**
@@ -33,14 +34,14 @@ public class Interfaccia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(230, 90, 150, 150);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basketgdr/Sfondo.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, -80, 1160, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -71,6 +72,6 @@ public class Interfaccia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
