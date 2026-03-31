@@ -16,11 +16,13 @@ public class Gioco {
     ArrayList <String> listaNemici = new ArrayList();
     String nomeEstratto;
     private Sfida s;
+    public static int turniVinti;
+    public static int turniPersi;
     
-    public void Gioco (Personaggio playerCorrente, Nemico enemieCorrente){
+    public void Gioco (Personaggio playerCorrente){
         
         player = playerCorrente;
-        enemie = enemieCorrente;
+        
     }
     
     public void selezionaPersonaggio (int sceltaP){
@@ -28,7 +30,7 @@ public class Gioco {
         //Capire come fare a scegliere il personaggio
     }
     
-    public void selezionaNemico (int sceltaN) throws Exception{ //Estrazione casuale nemici
+    public void selezionaNemico () throws Exception{ //Estrazione casuale nemici
         
         Scanner s = new Scanner(new File("listaNemici.txt"));
         ArrayList<String> nemici = new ArrayList<>();
@@ -40,18 +42,45 @@ public class Gioco {
         if(nomeEstratto == "Satsuki_Momoi" || nomeEstratto == "Riko_Aida"){ //gestisco qua gli amici e dico questo!
             
             player.ricaricaStatistiche();
+            enemie = null;
+        }
+        else{
+            if (nomeEstratto == "Ryota Kise"){
+                    enemie =new Nemico("Ryota Kise",1,1);
+            }
+            if (nomeEstratto == "Shintaro Midorima"){
+                    enemie =new Nemico("Shintaro Midorima",1,1);
+            }
+            if(nomeEstratto=="Atsushi Murasakibara"){
+                enemie = new Nemico("Atsushi Murasakibara",1,1);
+            }
+            if(nomeEstratto=="Tatsuya Himuro"){
+                enemie = new Nemico("Ttsuya Himuno",1,1);
+            }
+            if(nomeEstratto=="Makoto Hanamiya"){
+                enemie = new Nemico("Makoto Hanamiya",1,1);
+            }
+            if(nomeEstratto=="Papa Mbaye Siki"){
+                enemie = new Nemico("Papa Mbaye Siki",1,1);
+            }
         }
         
     }
     
     public void creaSfida(){
         
+       s = new Sfida(player,enemie);
        
-       //s.Sfida(player,enemie);
         
     }
     
     public void checkVittoria(){
         
+        if(turniVinti == 4){
+            
+            System.out.println("Vittoria");
     }
+        if(turniPersi != 0){
+            System.out.println("Game Over");
+        }
 }

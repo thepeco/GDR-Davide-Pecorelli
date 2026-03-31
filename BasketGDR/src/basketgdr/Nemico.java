@@ -13,9 +13,11 @@ public class Nemico {
     private int vitaNemico;
     private boolean risposta;
     private int dannoBase;
+    private String nome;
     
-    public Nemico (int vitaNemico,int dannoBase){
+    public Nemico (String nome,int vitaNemico,int dannoBase){
         
+        this.nome = nome;
         this.vitaNemico = vitaNemico;
         this.dannoBase = dannoBase;
     }

@@ -34,6 +34,7 @@ public class Sfida {
         
         if(vivoN == true){
          System.out.println("Morto");
+         Gioco.turniVinti++;
         }
         
         else{
@@ -42,6 +43,7 @@ public class Sfida {
         
         if(vivoP == true){
         System.out.println("Morto");
+        Gioco.turniPersi++;
         }
         
         else{
