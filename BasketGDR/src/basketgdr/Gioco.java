@@ -25,9 +25,9 @@ public class Gioco {
         
     }
     
-    public void selezionaPersonaggio (int sceltaP){
+    public Personaggio selezionaPersonaggio (){ //Seleziona personaggio
         
-        
+        return player;
     }
     
     public void selezionaNemico () throws Exception{ //Estrazione casuale nemici
@@ -44,6 +44,7 @@ public class Gioco {
             player.ricaricaStatistiche();
             enemie = null;
         }
+        
         else{
             if (nomeEstratto == "Ryota Kise"){
                     enemie =new Nemico("Ryota Kise",1,1);
