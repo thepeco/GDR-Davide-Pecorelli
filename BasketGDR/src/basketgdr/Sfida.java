@@ -12,7 +12,6 @@ public class Sfida {
     
     private Personaggio p;
     private Nemico n;
-    private EventoSfida es;
     private boolean vivoN;
     private boolean vivoP;
     
