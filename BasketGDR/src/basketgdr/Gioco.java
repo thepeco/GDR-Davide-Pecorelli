@@ -27,7 +27,7 @@ public class Gioco {
     
     public void selezionaPersonaggio (int sceltaP){
         
-        //Capire come fare a scegliere il personaggio
+        
     }
     
     public void selezionaNemico () throws Exception{ //Estrazione casuale nemici
