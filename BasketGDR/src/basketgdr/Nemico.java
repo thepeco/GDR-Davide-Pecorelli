@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package basketgdr;
-
+import java.io.Serializable;
 /**
  *
  * @author pecorelli.davide
  */
-public class Nemico {
+public class Nemico implements Serializable {
     
     private int vitaNemico;
     private boolean risposta;

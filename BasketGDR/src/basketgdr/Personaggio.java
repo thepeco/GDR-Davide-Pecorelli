@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package basketgdr;
-
+import java.io.Serializable;
 /**
  *
  * @author pecorelli.davide
  */
-public class Personaggio {
+public class Personaggio implements Serializable {
     
     protected int forzaFisica;
     protected int sete;

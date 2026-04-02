@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package basketgdr;
-
+import java.io.Serializable;
 /**
  *
  * @author pecorelli.davide
  */
-public class Aomine extends Personaggio{
+public class Aomine extends Personaggio implements Serializable{
     
     private Nemico n;
     private boolean zoneAttiva;
