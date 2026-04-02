@@ -28,18 +28,39 @@ public class InterfacciaSfida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Wide Latin", 2, 24)); // NOI18N
+        jLabel1.setText("Forza Fisica");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 460, 270, 40);
+
+        jLabel2.setFont(new java.awt.Font("Wide Latin", 2, 24)); // NOI18N
+        jLabel2.setText("Stahchezza");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 520, 350, 30);
+
+        jLabel3.setFont(new java.awt.Font("Wide Latin", 2, 24)); // NOI18N
+        jLabel3.setText("Sete");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, 570, 150, 30);
+
+        jLabel4.setFont(new java.awt.Font("Sylfaen", 1, 20)); // NOI18N
+        jLabel4.setText("Bibita:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 650, 80, 27);
+
+        jLabel5.setFont(new java.awt.Font("Sylfaen", 1, 20)); // NOI18N
+        jLabel5.setText("Snack:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 700, 70, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -70,5 +91,10 @@ public class InterfacciaSfida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
