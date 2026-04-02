@@ -10,4 +10,15 @@ import java.io.*;
  */
 public class FileManager {
     
+    public static void salvaPartita(Gioco statoGioco) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("salvataggio.dat"))) {
+            
+            out.writeObject(statoGioco);
+            
+            System.out.println("Partita salvata con successo!");
+            
+        } catch (IOException e) {
+            System.err.println("Errore durante il salvataggio: " + e.getMessage());
+        }
+    }
 }
