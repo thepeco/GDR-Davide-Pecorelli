@@ -21,4 +21,16 @@ public class FileManager {
             System.err.println("Errore durante il salvataggio: " + e.getMessage());
         }
     }
+    
+    public static Gioco caricaPartita() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("salvataggio.dat"))) {
+            
+            return (Gioco) in.readObject();
+            
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Errore durante il caricamento: " + e.getMessage());
+            
+            return null;
+        }
+    }
 }
