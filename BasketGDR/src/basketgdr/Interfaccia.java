@@ -13,17 +13,18 @@ import javax.swing.JOptionPane;
  * @author pecorelli.davide
  */
 public class Interfaccia extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaccia.class.getName());
     private String personaggioSelezionato = "";
+
     /**
      * Creates new form Interfaccia
      */
     public Interfaccia() {
-        
+
         initComponents();
-        
-       // jLabel1.setIcon (new ImageIcon(new ImageIcon("Sfondo.png").getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH)));
+
+        // jLabel1.setIcon (new ImageIcon(new ImageIcon("Sfondo.png").getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH)));
     }
 
     /**
@@ -198,21 +199,20 @@ public class Interfaccia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnselezionaAomineActionPerformed
 
     private void btnCaratteristicheKurokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaratteristicheKurokoActionPerformed
-        
-        JOptionPane.showMessageDialog(this, 
-                
-                "Giocatore: Tetsuya Kuroko\n" + 
-                "Forza Fisica: 85\n" + 
-                "Abilità Speciale: Vanishing Drive\n" + 
-                "Ruolo: Sesto uomo\n" +
-                "Descrizione:Tetsuya Kuroko sfrutta la sua scarsa presenza agendo come un'ombra che collega la squadra con passaggi fulminei e imprevedibili",
+
+        JOptionPane.showMessageDialog(this,
+                "Giocatore: Tetsuya Kuroko\n"
+                + "Forza Fisica: 85\n"
+                + "Abilità Speciale: Vanishing Drive\n"
+                + "Ruolo: Sesto uomo\n"
+                + "Descrizione:Tetsuya Kuroko sfrutta la sua scarsa presenza agendo come un'ombra che collega la squadra con passaggi fulminei e imprevedibili",
                 "Caratteristiche", JOptionPane.INFORMATION_MESSAGE);
-        
+
     }//GEN-LAST:event_btnCaratteristicheKurokoActionPerformed
 
     private void btnselezionaKagamiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselezionaKagamiActionPerformed
         personaggioSelezionato = "Kagami";
-        btnStart.setEnabled(true);        
+        btnStart.setEnabled(true);
     }//GEN-LAST:event_btnselezionaKagamiActionPerformed
 
     private void btnselezionaKurokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselezionaKurokoActionPerformed
@@ -226,49 +226,70 @@ public class Interfaccia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnselezionaAkashiActionPerformed
 
     private void btncaratteristicheKagamiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncaratteristicheKagamiActionPerformed
-        
-        JOptionPane.showMessageDialog(this, 
-                
-                "Giocatore: Taiga Kagami\n" + 
-                "Forza Fisica: 100\n" + 
-                "Abilità Speciale: Meteor Jam\n" + 
-                "Ruolo: Ala grande\n" +
-                "Descrizione:Kagami Taiga ha una forza esplosiva e un'elevazione sovrumana che gli permettono di dominare il canestro",
+
+        JOptionPane.showMessageDialog(this,
+                "Giocatore: Taiga Kagami\n"
+                + "Forza Fisica: 100\n"
+                + "Abilità Speciale: Meteor Jam\n"
+                + "Ruolo: Ala grande\n"
+                + "Descrizione:Kagami Taiga ha una forza esplosiva e un'elevazione sovrumana che gli permettono di dominare il canestro",
                 "Caratteristiche", JOptionPane.INFORMATION_MESSAGE);
-        
+
     }//GEN-LAST:event_btncaratteristicheKagamiActionPerformed
 
     private void btncaratteristicheAkashiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncaratteristicheAkashiActionPerformed
-        
-        JOptionPane.showMessageDialog(this, 
-                
-                "Giocatore: Sejiuro Akashi\n" + 
-                "Forza Fisica: 90\n" + 
-                "Abilità Speciale: Ankle Breaker\n" + 
-                "Ruolo: Playmaker\n" +
-                "Descrizione:Seijuro Akashi domina il campo con l'Occhio dell'Imperatore, prevedendo ogni mossa avversaria per annullare le difese e far cadere letteralmente i rivali ai suoi piedi",
+
+        JOptionPane.showMessageDialog(this,
+                "Giocatore: Sejiuro Akashi\n"
+                + "Forza Fisica: 90\n"
+                + "Abilità Speciale: Ankle Breaker\n"
+                + "Ruolo: Playmaker\n"
+                + "Descrizione:Seijuro Akashi domina il campo con l'Occhio dell'Imperatore, prevedendo ogni mossa avversaria per annullare le difese e far cadere letteralmente i rivali ai suoi piedi",
                 "Caratteristiche", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btncaratteristicheAkashiActionPerformed
 
     private void btncaratteristicheAomineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncaratteristicheAomineActionPerformed
-        
-        JOptionPane.showMessageDialog(this, 
-                
-                "Giocatore: Daiki Aomine\n" + 
-                "Forza Fisica: 105\n" + 
-                "Abilità Speciale: Formless shot\n" + 
-                "Ruolo: Ala grande\n" +
-                "Descrizione:Daiki Aomine è l'asso della Generazione dei Miracoli, dotato di un'agilità animalesca e di un tiro informe che gli permette di segnare da qualsiasi posizione o angolazione, rendendolo virtualmente immarcabile",
+
+        JOptionPane.showMessageDialog(this,
+                "Giocatore: Daiki Aomine\n"
+                + "Forza Fisica: 105\n"
+                + "Abilità Speciale: Formless shot\n"
+                + "Ruolo: Ala grande\n"
+                + "Descrizione:Daiki Aomine è l'asso della Generazione dei Miracoli, dotato di un'agilità animalesca e di un tiro informe che gli permette di segnare da qualsiasi posizione o angolazione, rendendolo virtualmente immarcabile",
                 "Caratteristiche", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btncaratteristicheAomineActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
-        Interfaccia_Incontro partita = new Interfaccia_Incontro();
-        
-        partita.setVisible(true);
-       
-        this.dispose(); //Chiude l' interfaccia attuale
+
+        if (personaggioSelezionato.equals("")) {
+            JOptionPane.showMessageDialog(this, "Seleziona un personaggio!");
+            return;
+        }
+
+        // 1. Prepariamo la sessione e peschiamo il nemico random
+        Gioco partita = new Gioco();
+        try {
+            partita.selezionaNemico();
+        } catch (Exception e) {
+        }
+        Nemico n = partita.getEnemie();
+
+        // 2. Creiamo il personaggio scelto (Senza switch)
+        Personaggio p = null;
+        if (personaggioSelezionato.equals("Kagami")) {
+            p = new Kagami(100, 0, 0, "Kagami", 20, false, n);
+        }
+        if (personaggioSelezionato.equals("Akashi")) {
+            p = new Akashi(100, 0, 0, "Akashi", 25, false, n);
+        }
+        if (personaggioSelezionato.equals("Aomine")) {
+            p = new Aomine(100, 0, 0, "Aomine", 22, false, n);
+        }
+
+        // 3. Lanciamo la battaglia
+        new Interfaccia_Incontro(p, n).setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnStartActionPerformed
 
     /**

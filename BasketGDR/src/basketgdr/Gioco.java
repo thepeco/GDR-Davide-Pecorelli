@@ -30,7 +30,7 @@ public class Gioco {
         return player;
     }
     
-    public void selezionaNemico () throws Exception{ //Estrazione casuale nemici
+    public String selezionaNemico () throws Exception{ //Estrazione casuale nemici
         
         Scanner s = new Scanner(new File("listaNemici.txt"));
         ArrayList<String> nemici = new ArrayList<>();
@@ -66,6 +66,12 @@ public class Gioco {
             }
         }
         
+        return nomeEstratto;
+    }
+    
+    public Nemico getEnemie() {
+        
+       return enemie;
     }
     
     public void creaSfida(){

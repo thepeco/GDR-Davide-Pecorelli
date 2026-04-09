@@ -13,7 +13,7 @@ public class Kuroko extends Personaggio implements Serializable{
     private Nemico n;
     private boolean phantomShootAttivo;
     
-    public Kuroko (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean phantomShootAttivo, Nemico n){
+    public Kuroko (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio, Nemico n){
         
         super(fozaFisica,sete,stanchezza,nome,dannoPersonaggio);
         
@@ -22,7 +22,6 @@ public class Kuroko extends Personaggio implements Serializable{
         this.stanchezza = stanchezza;
         this.nome = nome;
         this.dannoPersonaggio = dannoPersonaggio;
-        this.phantomShootAttivo = phantomShootAttivo;
         this.n = n;
     }
     

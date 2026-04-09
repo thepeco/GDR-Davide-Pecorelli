@@ -11,13 +11,34 @@ package basketgdr;
 public class Interfaccia_Incontro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaccia_Incontro.class.getName());
-
+    private Personaggio player;
+    private Nemico nemicoCorrente;
     /**
      * Creates new form Interfaccia_Incontro
      */
-    public Interfaccia_Incontro() {
+    public Interfaccia_Incontro(Personaggio player, Nemico nemico) {
         initComponents();
+        this.player = player;
+        this.nemicoCorrente = nemico;
+        
+        caricaDatiPartita();
     }
+    private void caricaDatiPartita() {
+        // SETTAGGIO PLAYER
+        lblforzaFisica.setText(String.valueOf(player.getForzaFisica()));
+        lblStanchezza.setText(String.valueOf(player.getStanchezza()));
+        lblSete.setText(String.valueOf(player.getSete()));
+        lblSnack.setText(String.valueOf(player.getSnack()));
+        lblBibita.setText(String.valueOf(player.getBibita()));
+        jLabel4.setText(player.getNome());
+
+        // SETTAGGIO NEMICO
+        if (nemicoCorrente != null) {
+            lblnomeNemico.setText(nemicoCorrente.getNome());
+            lblforzaFisicaNemico.setText(String.valueOf(nemicoCorrente.getVita()));
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

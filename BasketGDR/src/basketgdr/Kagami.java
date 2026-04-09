@@ -13,9 +13,9 @@ public class Kagami extends Personaggio implements Serializable{
     private Nemico n;
     private boolean zoneAttiva;
     
-    public Kagami (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean zoneAttiva, Nemico n){
+    public Kagami (int forzaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean zoneAttiva, Nemico n){
         
-        super(fozaFisica,sete,stanchezza,nome,dannoPersonaggio);
+        super(forzaFisica,sete,stanchezza,nome,dannoPersonaggio);
         
         this.forzaFisica = forzaFisica;
         this.sete = sete;

@@ -29,6 +29,21 @@ public class Personaggio implements Serializable {
         this.dannoPersonaggio = dannoPersonaggio;
     }
     
+    public int getForzaFisica(){
+        
+        return forzaFisica;
+    }
+    
+    public int getStanchezza(){
+        
+        return stanchezza;
+    }
+    
+    public int getSete(){
+        
+        return sete;
+    }
+    
     public String getNome(){
         
         return nome;
@@ -39,10 +54,20 @@ public class Personaggio implements Serializable {
         bibita = Numerobibite;
     }
     
+    public int getBibita(){
+        
+        return bibita;
+    }
+    
     
     public void setSnack (int NumeroSnack){ //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
         
         snack = NumeroSnack;
+    }
+    
+    public int getSnack(){
+        
+        return snack;
     }
     
     public boolean subisciDanno (int dannoPreso){

@@ -22,6 +22,12 @@ public class Nemico implements Serializable {
         this.dannoBase = dannoBase;
     }
     
+    public String getNome(){
+        
+        return nome;
+    }
+    
+    
     public boolean setVita(int vitaPersa){ //Perde vita
         
           vitaNemico = vitaNemico - vitaPersa;
@@ -39,6 +45,11 @@ public class Nemico implements Serializable {
         }
         
         return risposta;
+    }
+    
+    public int getVita(){
+        
+        return vitaNemico;
     }
     
     public boolean reazioneNemico (Personaggio p){
