@@ -4,9 +4,14 @@
  */
 package basketgdr;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,6 +21,7 @@ public class Interfaccia extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaccia.class.getName());
     private String personaggioSelezionato = "";
+    private PannelloSfondo mioPannello;
 
     /**
      * Creates new form Interfaccia
@@ -24,7 +30,58 @@ public class Interfaccia extends javax.swing.JFrame {
 
         initComponents();
 
-        // jLabel1.setIcon (new ImageIcon(new ImageIcon("Sfondo.png").getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH)));
+        mioPannello = new PannelloSfondo("/immagini/Darksfondo.png");
+        mioPannello.add(btnselezionaKagami);
+        mioPannello.add(btnselezionaKuroko);
+        mioPannello.add(btnselezionaAkashi);
+        mioPannello.add(btnselezionaAomine);
+        mioPannello.add(btnStart);
+        mioPannello.add(btnCaricaCSV);
+        mioPannello.add(btnCaricaSer);
+        mioPannello.add(jLabel6);
+        mioPannello.add(jLabel4);
+        mioPannello.add(jLabel5);
+        mioPannello.add(jLabel3);
+        mioPannello.add(jLabel2);
+        mioPannello.add(jLabel8);
+        mioPannello.add(jLabel1);
+        mioPannello.add(jLabel9);
+        this.setContentPane(mioPannello);
+        this.revalidate();
+        this.repaint();
+
+    }
+
+    public class PannelloSfondo extends JPanel {
+
+        private Image immagine;
+
+        public PannelloSfondo(String percorso) {
+            // setLayout(null) se vuoi posizionare i componenti (bottoni, label) a mano con le coordinate
+            this.setLayout(null);
+            try {
+                // Usa il percorso assoluto partendo da src (es: "/immagini/sfondo.png")
+                this.immagine = new ImageIcon(getClass().getResource("/Immagini/DarkSfondo.png")).getImage();
+            } catch (Exception e) {
+                System.err.println("Errore: Impossibile trovare l'immagine al percorso: " + percorso);
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g); // Fondamentale per pulire il pannello
+            if (immagine != null) {
+                Graphics2D g2d = (Graphics2D) g;
+
+                // ATTIVA L'ALTA QUALITÀ: evita l'effetto "pixel" quando l'immagine si ingrandisce
+                g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Disegna l'immagine adattandola perfettamente alla larghezza e altezza del pannello
+                g2d.drawImage(immagine, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
     }
 
     /**
@@ -50,28 +107,29 @@ public class Interfaccia extends javax.swing.JFrame {
         btncaratteristicheAkashi = new javax.swing.JButton();
         btncaratteristicheAomine = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         btnCaricaSer = new javax.swing.JButton();
         btnCaricaCSV = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Aomine.png"))); // NOI18N
         jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 380, 200, 280));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 500, 200, 280));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kuroko.png"))); // NOI18N
         jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 200, 310));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, 200, 310));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kagami.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 280, 340));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 280, 340));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Akashi.png"))); // NOI18N
         jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 250, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 470, 240, 330));
 
         btnselezionaKagami.setBackground(new java.awt.Color(204, 0, 0));
         btnselezionaKagami.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -82,7 +140,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btnselezionaKagamiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnselezionaKagami, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 670, -1, -1));
+        getContentPane().add(btnselezionaKagami, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 780, -1, -1));
 
         btnselezionaKuroko.setBackground(new java.awt.Color(0, 153, 255));
         btnselezionaKuroko.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -93,7 +151,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btnselezionaKurokoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnselezionaKuroko, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 670, -1, -1));
+        getContentPane().add(btnselezionaKuroko, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 790, -1, -1));
 
         btnselezionaAkashi.setBackground(new java.awt.Color(255, 51, 102));
         btnselezionaAkashi.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -104,7 +162,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btnselezionaAkashiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnselezionaAkashi, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 670, -1, -1));
+        getContentPane().add(btnselezionaAkashi, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 790, -1, -1));
 
         btnselezionaAomine.setBackground(new java.awt.Color(0, 51, 153));
         btnselezionaAomine.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -115,7 +173,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btnselezionaAomineActionPerformed(evt);
             }
         });
-        getContentPane().add(btnselezionaAomine, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 670, -1, -1));
+        getContentPane().add(btnselezionaAomine, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 790, -1, -1));
 
         btnStart.setBackground(new java.awt.Color(0, 0, 0));
         btnStart.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
@@ -126,7 +184,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btnStartActionPerformed(evt);
             }
         });
-        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 720, 210, -1));
+        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 860, 210, -1));
 
         btnCaratteristicheKuroko.setBackground(new java.awt.Color(0, 153, 255));
         btnCaratteristicheKuroko.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -137,7 +195,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btnCaratteristicheKurokoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCaratteristicheKuroko, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 670, -1, 30));
+        getContentPane().add(btnCaratteristicheKuroko, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 790, -1, 30));
 
         btncaratteristicheKagami.setBackground(new java.awt.Color(204, 0, 0));
         btncaratteristicheKagami.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -148,7 +206,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btncaratteristicheKagamiActionPerformed(evt);
             }
         });
-        getContentPane().add(btncaratteristicheKagami, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 670, -1, 30));
+        getContentPane().add(btncaratteristicheKagami, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 780, -1, 30));
 
         btncaratteristicheAkashi.setBackground(new java.awt.Color(255, 51, 102));
         btncaratteristicheAkashi.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -159,7 +217,7 @@ public class Interfaccia extends javax.swing.JFrame {
                 btncaratteristicheAkashiActionPerformed(evt);
             }
         });
-        getContentPane().add(btncaratteristicheAkashi, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 670, -1, 30));
+        getContentPane().add(btncaratteristicheAkashi, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 790, -1, 30));
 
         btncaratteristicheAomine.setBackground(new java.awt.Color(0, 51, 153));
         btncaratteristicheAomine.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -170,36 +228,49 @@ public class Interfaccia extends javax.swing.JFrame {
                 btncaratteristicheAomineActionPerformed(evt);
             }
         });
-        getContentPane().add(btncaratteristicheAomine, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 670, -1, 30));
+        getContentPane().add(btncaratteristicheAomine, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 790, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Taiga Kagami");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 110, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 110, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Tetsuya Kuroko");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 130, 20));
-
-        jLabel13.setText("jLabel13");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
-
+        btnCaricaSer.setBackground(new java.awt.Color(0, 0, 0));
+        btnCaricaSer.setFont(new java.awt.Font("Segoe UI Light", 2, 14)); // NOI18N
+        btnCaricaSer.setForeground(new java.awt.Color(255, 255, 255));
         btnCaricaSer.setText("Carica ser");
         btnCaricaSer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCaricaSerActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCaricaSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 730, -1, -1));
+        getContentPane().add(btnCaricaSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 870, 100, 30));
 
+        btnCaricaCSV.setBackground(new java.awt.Color(0, 0, 0));
+        btnCaricaCSV.setFont(new java.awt.Font("Segoe UI Light", 2, 14)); // NOI18N
+        btnCaricaCSV.setForeground(new java.awt.Color(255, 255, 255));
         btnCaricaCSV.setText("Carica CSV");
         btnCaricaCSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCaricaCSVActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCaricaCSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 730, -1, -1));
+        getContentPane().add(btnCaricaCSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 870, 100, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Tetsuya Kuroko");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 130, 20));
+
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Sejiuro Akashi");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Daiki Aomine");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 410, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,20 +348,14 @@ public class Interfaccia extends javax.swing.JFrame {
             return;
         }
 
-        
         Gioco partita = new Gioco();
-        try {
-            partita.selezionaNemico();
-        } catch (Exception e) {
-        }
         Nemico n = null;
         try {
             n = partita.selezionaNemico();
         } catch (Exception ex) {
-            System.getLogger(Interfaccia.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        
         Personaggio p = null;
         if (personaggioSelezionato.equals("Kagami")) {
             p = new Kagami(100, 0, 0, "Kagami", 20, false, 0, 1);
@@ -305,7 +370,6 @@ public class Interfaccia extends javax.swing.JFrame {
             p = new Kuroko(85, 0, 0, "Kuroko", 25, 1, 0);
         }
 
-        // 3. Lanciamo la battaglia
         new Interfaccia_Incontro(p, n).setVisible(true);
         this.dispose();
 
@@ -316,14 +380,13 @@ public class Interfaccia extends javax.swing.JFrame {
         Object[] dati = FileManager.caricaSer();
 
         if (dati != null) {
-            
+
             Personaggio p = (Personaggio) dati[0];
             Nemico n = (Nemico) dati[1];
 
-            
             Interfaccia_Incontro incontro = new Interfaccia_Incontro(p, n);
             incontro.setVisible(true);
-            this.dispose(); 
+            this.dispose();
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Errore: File .ser non trovato o corrotto!");
         }
@@ -382,12 +445,13 @@ public class Interfaccia extends javax.swing.JFrame {
     private javax.swing.JButton btnselezionaAomine;
     private javax.swing.JButton btnselezionaKagami;
     private javax.swing.JButton btnselezionaKuroko;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

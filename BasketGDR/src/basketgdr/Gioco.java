@@ -23,12 +23,12 @@ public class Gioco {
         
     }
     
-    public Personaggio selezionaPersonaggio (){ //Seleziona personaggio
+    public Personaggio selezionaPersonaggio (){ 
         
         return player;
     }
     
-    public Nemico selezionaNemico () throws Exception{ //Estrazione casuale nemici
+    public Nemico selezionaNemico () throws Exception{ 
         
         Scanner s = new Scanner(new File("listaNemici.txt"));
         ArrayList<String> nemici = new ArrayList<>();
@@ -62,7 +62,7 @@ public class Gioco {
             }
             if(nomeEstratto.contains("Hayama")){
                 enemie = new Nemico("Hayama",62,13);
-            }
+            } 
         
         return enemie;
     }

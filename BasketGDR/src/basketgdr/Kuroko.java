@@ -32,31 +32,22 @@ public class Kuroko extends Personaggio implements Serializable{
     }
     
     @Override
-    public void setBibita(int Numerobibite){ //In base a chi ha e non ha bibite/snack le settiamo su questi metodi 
+    public void setBibita(int Numerobibite){  
         
         bibita = Numerobibite;
     }
     
     @Override
-    public void setSnack (int NumeroSnack){ //In base a chi ha e non ha bibite/snack le settiamo su questi metodi 
+    public void setSnack (int NumeroSnack){ 
         
         snack = NumeroSnack;
     }
     
     @Override
-    public boolean abilitàSpeciale (Nemico n){ //Devo collegarci la vita del nemico???
+    public boolean abilitàSpeciale (Nemico n){
     
         System.out.println("Vanishing Drive!");
-        //Togli la vita del nemico usando il dannoPersonaggio
         return n.setVita(25);
-        
-    }
-    
-
-    
-    public boolean phantomShoot(Nemico n){
-        
-       return n.setVita(50);
         
     }
   }

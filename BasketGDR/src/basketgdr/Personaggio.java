@@ -68,7 +68,7 @@ public class Personaggio implements Serializable {
         return nome;
     }
 
-    public void setBibita(int Numerobibite) { //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
+    public void setBibita(int Numerobibite) { 
 
         bibita = Numerobibite;
     }
@@ -78,7 +78,7 @@ public class Personaggio implements Serializable {
         return bibita;
     }
 
-    public void setSnack(int NumeroSnack) { //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
+    public void setSnack(int NumeroSnack) { 
 
         snack = NumeroSnack;
     }
@@ -108,7 +108,7 @@ public class Personaggio implements Serializable {
         if (sete >= 10) {
 
             bibita = bibita - 1;
-            //Diminuisce la sete quindi fare dopo dei controlli e scalare la sete
+            
 
             sete = sete - 10;
 
@@ -118,7 +118,7 @@ public class Personaggio implements Serializable {
 
         }
 
-        return bibita; //Anche la sete viene aggiornata
+        return bibita; 
     }
 
     public int mangiaSnack() {
@@ -126,7 +126,7 @@ public class Personaggio implements Serializable {
         if (stanchezza >= 10) {
 
             snack = snack - 1;
-            //Diminuisce la stanchezza quindi fare dopo dei controlli e scalare la stanchezza
+            
             stanchezza = stanchezza - 10;
 
         } else {
@@ -134,22 +134,13 @@ public class Personaggio implements Serializable {
             System.out.println("Ancora non puoi mangiare il tuo snack, devi avere più di 10 di stanchezza");
 
         }
-        return snack; //Anche la stanchezza viene aggiornata
+        return snack; 
     }
 
-    public boolean abilitàSpeciale(Nemico n) { //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
+    public boolean abilitàSpeciale(Nemico n) { 
 
         return n.setVita(dannoPersonaggio);
 
     }
 
-    public void ricaricaStatistiche() { // Viene chiamato quando tra la lista nemici spuntano i due (amici)
-
-        bibita = bibita + 1;
-        /*
-        snack = snack + 1;
-        forzaFisica = forzaFisica + 30;
-         */
-
-    }
 }

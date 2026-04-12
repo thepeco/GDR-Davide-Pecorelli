@@ -33,7 +33,7 @@ public class Nemico implements Serializable {
     }
     
     
-    public boolean setVita(int vitaPersa){ //Perde vita
+    public boolean setVita(int vitaPersa){ 
         
           vitaNemico = vitaNemico - vitaPersa;
         

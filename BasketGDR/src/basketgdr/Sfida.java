@@ -12,64 +12,15 @@ public class Sfida {
     
     private Personaggio p;
     private Nemico n;
-    private boolean vivoN;
-    private boolean vivoP;
-    private Kuroko k;
-    
+
     public Sfida (Personaggio p, Nemico n){
-        
         this.p = p;
         this.n = n;
     }
-    
-    public void combattimentoBase(){ //Attacco del personaggio
+
+    public void combattimentoBase(){ 
         
-        
-        vivoN = p.abilitàSpeciale(n);
-        vivoP = n.reazioneNemico(p);
-        
-        if(vivoN == true){
-         System.out.println("Morto");
-         Gioco.turniVinti++;
-        }
-        
-        else{
-        System.out.println("Vivo");
-        }
-        
-        if(vivoP == true){
-        System.out.println("Morto");
-        Gioco.turniPersi++;
-        }
-        
-        else{
-        System.out.println("Vivo");
-        }
-         
-    }
-    
-    public void combattimentoSpeciale(){
-        
-        vivoN = k.phantomShoot(n);
-        vivoP = n.reazioneNemico(k);
-        
-        if(vivoN == true){
-         System.out.println("Morto");
-         Gioco.turniVinti++;
-        }
-        
-        else{
-        System.out.println("Vivo");
-        }
-        
-        if(vivoP == true){
-        System.out.println("Morto");
-        Gioco.turniPersi++;
-        }
-        
-        else{
-        System.out.println("Vivo");
-        }
-        
+        p.abilitàSpeciale(n); 
+        n.reazioneNemico(p);
     }
 }

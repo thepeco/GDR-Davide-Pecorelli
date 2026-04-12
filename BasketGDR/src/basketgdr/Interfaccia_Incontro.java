@@ -4,7 +4,13 @@
  */
 package basketgdr;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,6 +23,7 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     private Nemico nemicoCorrente;
     private int nemiciSconfitti = 0;
     private final int MAX_NEMICI = 4;
+    private PannelloSfondo mioPannello2;
 
     /**
      * Creates new form Interfaccia_Incontro
@@ -24,6 +31,37 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     public Interfaccia_Incontro(Personaggio player, Nemico nemico) {
 
         initComponents();
+
+        mioPannello2 = new Interfaccia_Incontro.PannelloSfondo("/immagini/Sfondo1.png");
+        mioPannello2.add(jLabel4);
+        mioPannello2.add(jLabel5);
+        mioPannello2.add(lblnomePersonaggio);
+        mioPannello2.add(lblnomeNemico);
+        mioPannello2.add(btnsalvaSer);
+        mioPannello2.add(btnsalvaCSV);
+        mioPannello2.add(jLabel1);
+        mioPannello2.add(jLabel2);
+        mioPannello2.add(jLabel3);
+        mioPannello2.add(btnSnack);
+        mioPannello2.add(btnBibita);
+        mioPannello2.add(lblforzaFisica);
+        mioPannello2.add(lblStanchezza);
+        mioPannello2.add(lblSete);
+        mioPannello2.add(lblBibita);
+        mioPannello2.add(lblSnack);
+        mioPannello2.add(btnAbilitàSpeciale);
+        mioPannello2.add(btnPhantom);
+        mioPannello2.add(btnZone);
+        mioPannello2.add(jLabel6);
+        mioPannello2.add(jLabel7);
+        mioPannello2.add(lblforzaFisicaNemico);
+        mioPannello2.add(lblImmagine);
+        mioPannello2.add(lblImmagineN);
+
+        this.setContentPane(mioPannello2);
+        this.revalidate();
+        this.repaint();
+
         this.player = player;
         this.nemicoCorrente = nemico;
 
@@ -31,10 +69,41 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         caricaImmaginiNemici();
     }
 
+    public class PannelloSfondo extends JPanel {
+
+        private Image immagine;
+
+        public PannelloSfondo(String percorso) {
+            
+            this.setLayout(null);
+            try {
+                
+                this.immagine = new ImageIcon(getClass().getResource("/Immagini/Sfondo1.png")).getImage();
+            } catch (Exception e) {
+                System.err.println("Errore: Impossibile trovare l'immagine al percorso: " + percorso);
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g); 
+            if (immagine != null) {
+                Graphics2D g2d = (Graphics2D) g;
+
+                
+                g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                
+                g2d.drawImage(immagine, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+    }
+
     private void caricaDatiPartita() {
         if (player != null) {
 
-            // SETTAGGIO PLAYER
             lblforzaFisica.setText(String.valueOf(player.getForzaFisica()));
             lblStanchezza.setText(String.valueOf(player.getStanchezza()));
             lblSete.setText(String.valueOf(player.getSete()));
@@ -113,42 +182,28 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
 
     private void eseguiTurno(int dannoGiocatore) {
 
-        // Calcolo danno minimo (senza Math.max)
-        int dannoSottratto = dannoGiocatore;
-        if (dannoSottratto < 10) {
-            dannoSottratto = 10;
-        }
+        Sfida s = new Sfida(player, nemicoCorrente);
 
-        // PASSIAMO SOLO IL DANNO (visto che il tuo setVita sottrae già)
-        nemicoCorrente.setVita(dannoSottratto);
-
-        // Ora controlliamo se è ancora vivo usando il getter
-        if (nemicoCorrente.getVita() > 0) {
-
-            int dannoNemico = nemicoCorrente.getDanno();
-            if (dannoNemico < 5) {
-                dannoNemico = 5;
-            }
-
-            player.subisciDanno(dannoNemico);
-
-        } else {
-            // NON CHIAMARE setVita(0) qui! Il tuo metodo ha già fatto il calcolo.
-            // Se vuoi essere sicuro che non sia negativo per il prossimo nemico:
-            if (nemicoCorrente.getVita() < 0) {
-                // Qui servirebbe un metodo che "setta" il valore fisso, 
-                // ma se il tuo setVita sottrae sempre, creiamo un loop.
-            }
-        }
+        s.combattimentoBase();
 
         caricaDatiPartita();
         controllaMorti();
     }
 
     private void controllaMorti() {
+
         if (player.getForzaFisica() <= 0) {
             javax.swing.JOptionPane.showMessageDialog(this, "Sei stato sconfitto!");
             this.dispose();
+
+        } else if (player.getSete() >= 40) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Troppa sete! Ti sei dovuto fermare. Game Over!");
+            this.dispose();
+
+        } else if (player.getStanchezza() >= 40) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Troppo stanco! Kuroko è svenuto in campo. Game Over!");
+            this.dispose();
+
         } else if (nemicoCorrente.getVita() <= 0) {
             nemiciSconfitti++;
 
@@ -156,7 +211,7 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Nemico abbattuto! Premere OK per il prossimo.");
                 generaNuovoNemico();
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "CAMPIONE! Hai vinto tutti e 4 gli incontri!");
+                javax.swing.JOptionPane.showMessageDialog(this, "SEI RIUSCITO A SCONFIGGERE CON LE TUE MOSSE I 4 AVVERSARI, HAI VINTO!!!");
                 this.dispose();
             }
         }
@@ -165,7 +220,11 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     private void generaNuovoNemico() {
         try {
             Gioco g = new Gioco();
-            String nomeVecchio = nemicoCorrente.getNome();
+
+            String nomeVecchio = "";
+            if (this.nemicoCorrente != null) {
+                nomeVecchio = this.nemicoCorrente.getNome();
+            }
 
             Nemico nuovoPescato = g.selezionaNemico();
 
@@ -175,11 +234,14 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
 
             this.nemicoCorrente = nuovoPescato;
 
-            caricaDatiPartita();
+            lblnomeNemico.setText(this.nemicoCorrente.getNome());
+            lblforzaFisicaNemico.setText(String.valueOf(this.nemicoCorrente.getVita()));
+
             caricaImmaginiNemici();
+            caricaDatiPartita();
 
         } catch (Exception e) {
-            System.out.println("Errore: " + e.getMessage());
+            System.out.println("Errore nel cambio: " + e.getMessage());
         }
     }
 
@@ -216,41 +278,49 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         btnsalvaSer = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnsalvaCSV = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Forza Fisica:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 500, 120, 25);
+        jLabel1.setBounds(140, 550, 120, 25);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Stanchezza:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 540, 110, 20);
+        jLabel2.setBounds(140, 590, 110, 20);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 2, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Sete:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(60, 580, 60, 25);
+        jLabel3.setBounds(140, 630, 60, 25);
 
         lblforzaFisica.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        lblforzaFisica.setForeground(new java.awt.Color(255, 255, 255));
         lblforzaFisica.setText("0");
         getContentPane().add(lblforzaFisica);
-        lblforzaFisica.setBounds(240, 510, 37, 16);
+        lblforzaFisica.setBounds(320, 560, 37, 16);
 
         lblStanchezza.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        lblStanchezza.setForeground(new java.awt.Color(255, 255, 255));
         lblStanchezza.setText("0");
         getContentPane().add(lblStanchezza);
-        lblStanchezza.setBounds(240, 550, 30, 16);
+        lblStanchezza.setBounds(320, 600, 30, 16);
 
         lblSete.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        lblSete.setForeground(new java.awt.Color(255, 255, 255));
         lblSete.setText("0");
         getContentPane().add(lblSete);
-        lblSete.setBounds(240, 590, 37, 16);
+        lblSete.setBounds(320, 640, 37, 16);
 
-        btnSnack.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        btnSnack.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnSnack.setText("Snack");
         btnSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,13 +328,15 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSnack);
-        btnSnack.setBounds(60, 630, 72, 27);
+        btnSnack.setBounds(140, 680, 72, 27);
 
         lblSnack.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        lblSnack.setForeground(new java.awt.Color(255, 255, 255));
         lblSnack.setText("0");
         getContentPane().add(lblSnack);
-        lblSnack.setBounds(240, 640, 37, 16);
+        lblSnack.setBounds(320, 690, 37, 16);
 
+        btnBibita.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnBibita.setText("Bibita");
         btnBibita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,29 +344,33 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBibita);
-        btnBibita.setBounds(60, 670, 72, 23);
+        btnBibita.setBounds(140, 720, 72, 27);
 
         lblBibita.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        lblBibita.setForeground(new java.awt.Color(255, 255, 255));
         lblBibita.setText("0");
         getContentPane().add(lblBibita);
-        lblBibita.setBounds(240, 680, 37, 16);
+        lblBibita.setBounds(320, 730, 37, 16);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("GIOCATORE");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(140, 70, 150, 32);
+        jLabel4.setBounds(220, 100, 170, 32);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("AVVERSARIO");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(780, 70, 160, 32);
+        jLabel5.setBounds(870, 110, 160, 32);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 2, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Forza Fisica");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(770, 490, 120, 25);
+        jLabel6.setBounds(820, 570, 120, 25);
 
-        btnAbilitàSpeciale.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnAbilitàSpeciale.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         btnAbilitàSpeciale.setText("Abilità Speciale");
         btnAbilitàSpeciale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,9 +378,9 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAbilitàSpeciale);
-        btnAbilitàSpeciale.setBounds(300, 500, 150, 32);
+        btnAbilitàSpeciale.setBounds(380, 550, 160, 32);
 
-        btnZone.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnZone.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         btnZone.setText("ZONE");
         btnZone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,14 +388,15 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnZone);
-        btnZone.setBounds(300, 550, 150, 32);
+        btnZone.setBounds(380, 710, 160, 32);
 
         lblforzaFisicaNemico.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        lblforzaFisicaNemico.setForeground(new java.awt.Color(255, 255, 255));
         lblforzaFisicaNemico.setText("0");
         getContentPane().add(lblforzaFisicaNemico);
-        lblforzaFisicaNemico.setBounds(910, 500, 40, 16);
+        lblforzaFisicaNemico.setBounds(960, 580, 40, 16);
 
-        btnPhantom.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnPhantom.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         btnPhantom.setText("Phantom Shot");
         btnPhantom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,22 +404,25 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnPhantom);
-        btnPhantom.setBounds(300, 600, 150, 32);
+        btnPhantom.setBounds(380, 630, 160, 32);
 
+        lblnomePersonaggio.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        lblnomePersonaggio.setForeground(new java.awt.Color(255, 255, 255));
         lblnomePersonaggio.setText("...");
         getContentPane().add(lblnomePersonaggio);
-        lblnomePersonaggio.setBounds(150, 110, 130, 16);
+        lblnomePersonaggio.setBounds(230, 140, 130, 25);
 
-        lblnomeNemico.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        lblnomeNemico.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        lblnomeNemico.setForeground(new java.awt.Color(255, 255, 255));
         lblnomeNemico.setText("...");
         getContentPane().add(lblnomeNemico);
-        lblnomeNemico.setBounds(790, 110, 140, 20);
+        lblnomeNemico.setBounds(880, 150, 140, 25);
         getContentPane().add(lblImmagine);
-        lblImmagine.setBounds(140, 130, 230, 310);
+        lblImmagine.setBounds(180, 180, 310, 350);
         getContentPane().add(lblImmagineN);
-        lblImmagineN.setBounds(760, 140, 200, 300);
+        lblImmagineN.setBounds(790, 180, 310, 380);
 
-        btnsalvaSer.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnsalvaSer.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         btnsalvaSer.setText("Ser");
         btnsalvaSer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,13 +430,15 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnsalvaSer);
-        btnsalvaSer.setBounds(350, 60, 110, 23);
+        btnsalvaSer.setBounds(430, 90, 110, 23);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Historic", 2, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Salva partita");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(490, 20, 70, 16);
+        jLabel7.setBounds(520, 40, 160, 32);
 
-        btnsalvaCSV.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnsalvaCSV.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         btnsalvaCSV.setText("CSV");
         btnsalvaCSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,7 +446,9 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnsalvaCSV);
-        btnsalvaCSV.setBounds(570, 60, 100, 20);
+        btnsalvaCSV.setBounds(650, 90, 100, 20);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1140, 780);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,7 +458,6 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         if (player.getSnack() > 0) {
             player.mangiaSnack();
 
-            // Aggiorno solo i numeri che l'utente vede a schermo
             lblSnack.setText(String.valueOf(player.getSnack()));
             lblStanchezza.setText(String.valueOf(player.getStanchezza()));
             lblSete.setText(String.valueOf(player.getSete()));
@@ -385,11 +468,11 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSnackActionPerformed
 
     private void btnBibitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBibitaActionPerformed
+
         int nuovaStanchezza = player.getStanchezza() - 5;
         if (player.getBibita() > 0) {
             player.beviBibita();
 
-            // Aggiorno solo i numeri che l'utente vede a schermo
             lblBibita.setText(String.valueOf(player.getBibita()));
             lblSete.setText(String.valueOf(player.getSete()));
             lblStanchezza.setText(String.valueOf(player.getStanchezza()));
@@ -414,19 +497,24 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         if (nome.equals("Kagami")) {
             Kagami k = (Kagami) player;
             k.attivaZone();
+            player.setStanchezza(player.getStanchezza() + 10);
+            player.setSete(player.getSete() + 10);
+            JOptionPane.showMessageDialog(this, "KAGAMI E' ENTRATO NELLA ZONE!");
             damage = k.getDannoPersonaggio();
         } else if (nome.equals("Aomine")) {
             Aomine a = (Aomine) player;
             a.attivaZone();
+            player.setStanchezza(player.getStanchezza() + 10);
+            player.setSete(player.getSete() + 10);
+            JOptionPane.showMessageDialog(this, "AOMINE E' ENTRATO NELLA ZONE!");
             damage = a.getDannoPersonaggio();
         } else if (nome.equals("Akashi")) {
             Akashi ak = (Akashi) player;
             ak.attivaZone();
+            player.setStanchezza(player.getStanchezza() + 10);
+            player.setSete(player.getSete() + 10);
             damage = ak.getDannoPersonaggio();
-        }
-
-        if (damage <= 0) {
-            damage = 5;
+            JOptionPane.showMessageDialog(this, "AKASHI E' ENTRATO NELLA ZONE!");
         }
 
         eseguiTurno(damage);
@@ -435,32 +523,30 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
 
     private void btnsalvaSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvaSerActionPerformed
         FileManager.salvaSer(this.player, this.nemicoCorrente);
-        javax.swing.JOptionPane.showMessageDialog(this, "Salvato!");
+        JOptionPane.showMessageDialog(this, "Salvato!");
     }//GEN-LAST:event_btnsalvaSerActionPerformed
 
     private void btnsalvaCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvaCSVActionPerformed
         FileManager.salvaCSV(this.player, this.nemicoCorrente);
-        javax.swing.JOptionPane.showMessageDialog(this, "Salvato!");
+        JOptionPane.showMessageDialog(this, "Salvato!");
     }//GEN-LAST:event_btnsalvaCSVActionPerformed
 
     private void btnPhantomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhantomActionPerformed
 
-        int damage = 0;
+        if(player.getSete() < 25 && player.getStanchezza() < 40){
 
-        if (player.getNome().equals("Kuroko")) {
-
-            Kuroko k = (Kuroko) player;
-
-            k.phantomShoot(nemicoCorrente);
-            damage = k.getDannoPersonaggio();
+            int damage = 50;
 
             JOptionPane.showMessageDialog(this, "PHANTOM SHOOT!");
 
-            lblforzaFisicaNemico.setText(nemicoCorrente.getVita() + "");
-
             eseguiTurno(damage);
+            player.setStanchezza(player.getStanchezza() + 10);
+            player.setSete(player.getSete() + 10);
         }
-
+        else{
+            
+            JOptionPane.showMessageDialog(this, "Purtroppo sei troppo stanco per poter utilizzare il Phantom Shot!!");
+        }
     }//GEN-LAST:event_btnPhantomActionPerformed
 
     /**
@@ -501,6 +587,7 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBibita;
     private javax.swing.JLabel lblImmagine;
     private javax.swing.JLabel lblImmagineN;

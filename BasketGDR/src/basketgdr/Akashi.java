@@ -54,8 +54,6 @@ public class Akashi extends Personaggio implements Serializable{
     public void attivaZone(){
         
         forzaFisica = forzaFisica + 50;
-        sete = 0;
-        stanchezza = 0;
         dannoPersonaggio = 55;
     }
 }
