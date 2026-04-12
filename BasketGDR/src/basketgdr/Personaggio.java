@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package basketgdr;
+
 import java.io.Serializable;
+
 /**
  *
  * @author pecorelli.davide
  */
 public class Personaggio implements Serializable {
-    
+
     protected int forzaFisica;
     protected int sete;
     protected int stanchezza;
@@ -19,139 +21,135 @@ public class Personaggio implements Serializable {
     protected String nome;
     protected Nemico n;
     private boolean rispostaPersonaggio;
-    
-    public Personaggio (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio){
-        
+
+    public Personaggio(int forzaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio, int bibita, int snack) {
+
         this.forzaFisica = forzaFisica;
         this.sete = sete;
         this.stanchezza = stanchezza;
         this.nome = nome;
         this.dannoPersonaggio = dannoPersonaggio;
+        this.bibita = bibita;
+        this.snack = snack;
     }
-    
-    public int getForzaFisica(){
-        
+
+    public int getDannoPersonaggio() {
+
+        return dannoPersonaggio;
+    }
+
+    public int getForzaFisica() {
+
         return forzaFisica;
     }
-    
-    public int getStanchezza(){
-        
+
+    public int getStanchezza() {
+
         return stanchezza;
     }
-    
-    public int getSete(){
-        
+
+    public void setStanchezza(int stanchezza) {
+
+        this.stanchezza += 5;
+    }
+
+    public void setSete(int sete) {
+
+        this.sete += 5;
+    }
+
+    public int getSete() {
+
         return sete;
     }
-    
-    public String getNome(){
-        
+
+    public String getNome() {
+
         return nome;
     }
-    
-    public void setBibita(int Numerobibite){ //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
-        
+
+    public void setBibita(int Numerobibite) { //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
+
         bibita = Numerobibite;
     }
-    
-    public int getBibita(){
-        
+
+    public int getBibita() {
+
         return bibita;
     }
-    
-    
-    public void setSnack (int NumeroSnack){ //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
-        
+
+    public void setSnack(int NumeroSnack) { //Invece di fare questi metodi non possiamo metterle nel costruttore di personaggio?
+
         snack = NumeroSnack;
     }
-    
-    public int getSnack(){
-        
+
+    public int getSnack() {
+
         return snack;
     }
-    
-    public boolean subisciDanno (int dannoPreso){
-        
+
+    public boolean subisciDanno(int dannoPreso) {
+
         forzaFisica = forzaFisica - dannoPreso;
-        
-        if(forzaFisica <= 0){
-            
+
+        if (forzaFisica <= 0) {
+
             rispostaPersonaggio = true;
-        }
-        
-        else{
-            
+        } else {
+
             rispostaPersonaggio = false;
         }
-        
+
         return rispostaPersonaggio;
     }
-    
-    public int beviBibita (){
-        
-     if(sete >= 10){
-            
-          if(bibita > 0){
-             
-             bibita = bibita - 1;
-             //Diminuisce la sete quindi fare dopo dei controlli e scalare la sete
-             
-             sete = sete - 10;
-          }
-        
-          else{
-            System.out.println("Hai 0 bibite a disposizione!");  
-          }  
-    }
-     
-     else{
-         
-         System.out.println("Ancora non puoi bere la tua bibita, devi avere più di 10 di sete!");
-         
-     }
-        
-        
+
+    public int beviBibita() {
+
+        if (sete >= 10) {
+
+            bibita = bibita - 1;
+            //Diminuisce la sete quindi fare dopo dei controlli e scalare la sete
+
+            sete = sete - 10;
+
+        } else {
+
+            System.out.println("Ancora non puoi bere la tua bibita, devi avere più di 10 di sete!");
+
+        }
+
         return bibita; //Anche la sete viene aggiornata
     }
-    
-    public int mangiaSnack (){
-     
-     if(stanchezza >= 10){
-         
-        if(snack > 0){
-            
+
+    public int mangiaSnack() {
+
+        if (stanchezza >= 10) {
+
             snack = snack - 1;
             //Diminuisce la stanchezza quindi fare dopo dei controlli e scalare la stanchezza
             stanchezza = stanchezza - 10;
+
+        } else {
+
+            System.out.println("Ancora non puoi mangiare il tuo snack, devi avere più di 10 di stanchezza");
+
         }
-        
-        else{
-            System.out.println("Hai 0 snack a disposizione!");
-        }
-     }
-     
-     else{
-         
-         System.out.println("Ancora non puoi mangiare il tuo snack, devi avere più di 10 di stanchezza");
-        
-     }
         return snack; //Anche la stanchezza viene aggiornata
-  }
-    
-    public boolean abilitàSpeciale (Nemico n){ //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
-        
-        return n.setVita(dannoPersonaggio);
-        
     }
-    
-    public void ricaricaStatistiche (){ // Viene chiamato quando tra la lista nemici spuntano i due (amici)
-        
-        
+
+    public boolean abilitàSpeciale(Nemico n) { //dobbiamo aggiornare la vita del nemico in base al danno provocato dal tipo di personaggio
+
+        return n.setVita(dannoPersonaggio);
+
+    }
+
+    public void ricaricaStatistiche() { // Viene chiamato quando tra la lista nemici spuntano i due (amici)
+
         bibita = bibita + 1;
         /*
         snack = snack + 1;
         forzaFisica = forzaFisica + 30;
-        */
-        
+         */
+
     }
 }

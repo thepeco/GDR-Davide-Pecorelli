@@ -27,14 +27,19 @@ public class Nemico implements Serializable {
         return nome;
     }
     
+    public int getDanno(){
+        
+        return dannoBase;
+    }
+    
     
     public boolean setVita(int vitaPersa){ //Perde vita
         
           vitaNemico = vitaNemico - vitaPersa;
         
         if(vitaNemico <= 0){
-            
             risposta = true;
+            
             System.out.println("Il nemico è morto");
         }
         

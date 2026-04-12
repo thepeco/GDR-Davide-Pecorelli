@@ -4,41 +4,184 @@
  */
 package basketgdr;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Davide
  */
 public class Interfaccia_Incontro extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaccia_Incontro.class.getName());
     private Personaggio player;
     private Nemico nemicoCorrente;
+    private int nemiciSconfitti = 0;
+    private final int MAX_NEMICI = 4;
+
     /**
      * Creates new form Interfaccia_Incontro
      */
     public Interfaccia_Incontro(Personaggio player, Nemico nemico) {
+
         initComponents();
         this.player = player;
         this.nemicoCorrente = nemico;
-        
-        caricaDatiPartita();
-    }
-    private void caricaDatiPartita() {
-        // SETTAGGIO PLAYER
-        lblforzaFisica.setText(String.valueOf(player.getForzaFisica()));
-        lblStanchezza.setText(String.valueOf(player.getStanchezza()));
-        lblSete.setText(String.valueOf(player.getSete()));
-        lblSnack.setText(String.valueOf(player.getSnack()));
-        lblBibita.setText(String.valueOf(player.getBibita()));
-        jLabel4.setText(player.getNome());
 
-        // SETTAGGIO NEMICO
+        caricaDatiPartita();
+        caricaImmaginiNemici();
+    }
+
+    private void caricaDatiPartita() {
+        if (player != null) {
+
+            // SETTAGGIO PLAYER
+            lblforzaFisica.setText(String.valueOf(player.getForzaFisica()));
+            lblStanchezza.setText(String.valueOf(player.getStanchezza()));
+            lblSete.setText(String.valueOf(player.getSete()));
+            lblSnack.setText(String.valueOf(player.getSnack()));
+            lblBibita.setText(String.valueOf(player.getBibita()));
+
+            lblnomePersonaggio.setText(player.getNome());
+            jLabel4.setText("GIOCATORE: " + player.getNome()); // Opzionale: cambia anche il titolo
+        }
+
+        if (player.getNome().equals("Kuroko")) {
+            btnZone.setVisible(false);
+            btnPhantom.setVisible(true);
+
+        } else {
+            btnZone.setVisible(true);
+            btnPhantom.setVisible(false);
+        }
+
         if (nemicoCorrente != null) {
             lblnomeNemico.setText(nemicoCorrente.getNome());
+
             lblforzaFisicaNemico.setText(String.valueOf(nemicoCorrente.getVita()));
+        } else {
+            lblnomeNemico.setText("Nessun Nemico");
+        }
+
+        if (player.getNome().contains("Kuroko")) {
+
+            lblImmagine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kuroko.png")));
+        }
+
+        if (player.getNome().contains("Kagami")) {
+
+            lblImmagine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kagami.png")));
+        }
+        if (player.getNome().contains("Akashi")) {
+
+            lblImmagine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Akashi.png")));
+        }
+        if (player.getNome().contains("Aomine")) {
+
+            lblImmagine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Aomine.png")));
+        }
+
+    }
+
+    public void caricaImmaginiNemici() {
+
+        if (nemicoCorrente.getNome().contains("Kise")) {
+
+            lblImmagineN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kise.png")));
+        }
+        if (nemicoCorrente.getNome().contains("Midorima")) {
+
+            lblImmagineN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Midorima.png")));
+        }
+        if (nemicoCorrente.getNome().contains("Murasakibara")) {
+
+            lblImmagineN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Murasakibara.png")));
+        }
+        if (nemicoCorrente.getNome().contains("Himuro")) {
+
+            lblImmagineN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Himuro.png")));
+        }
+        if (nemicoCorrente.getNome().contains("Hanamiya")) {
+
+            lblImmagineN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Hanamiya.png")));
+        }
+        if (nemicoCorrente.getNome().contains("Hayama")) {
+
+            lblImmagineN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Hayama.png")));
+        }
+
+    }
+
+    private void eseguiTurno(int dannoGiocatore) {
+
+        // Calcolo danno minimo (senza Math.max)
+        int dannoSottratto = dannoGiocatore;
+        if (dannoSottratto < 10) {
+            dannoSottratto = 10;
+        }
+
+        // PASSIAMO SOLO IL DANNO (visto che il tuo setVita sottrae già)
+        nemicoCorrente.setVita(dannoSottratto);
+
+        // Ora controlliamo se è ancora vivo usando il getter
+        if (nemicoCorrente.getVita() > 0) {
+
+            int dannoNemico = nemicoCorrente.getDanno();
+            if (dannoNemico < 5) {
+                dannoNemico = 5;
+            }
+
+            player.subisciDanno(dannoNemico);
+
+        } else {
+            // NON CHIAMARE setVita(0) qui! Il tuo metodo ha già fatto il calcolo.
+            // Se vuoi essere sicuro che non sia negativo per il prossimo nemico:
+            if (nemicoCorrente.getVita() < 0) {
+                // Qui servirebbe un metodo che "setta" il valore fisso, 
+                // ma se il tuo setVita sottrae sempre, creiamo un loop.
+            }
+        }
+
+        caricaDatiPartita();
+        controllaMorti();
+    }
+
+    private void controllaMorti() {
+        if (player.getForzaFisica() <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Sei stato sconfitto!");
+            this.dispose();
+        } else if (nemicoCorrente.getVita() <= 0) {
+            nemiciSconfitti++;
+
+            if (nemiciSconfitti < MAX_NEMICI) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Nemico abbattuto! Premere OK per il prossimo.");
+                generaNuovoNemico();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "CAMPIONE! Hai vinto tutti e 4 gli incontri!");
+                this.dispose();
+            }
         }
     }
 
+    private void generaNuovoNemico() {
+        try {
+            Gioco g = new Gioco();
+            String nomeVecchio = nemicoCorrente.getNome();
+
+            Nemico nuovoPescato = g.selezionaNemico();
+
+            while (nuovoPescato.getNome().equals(nomeVecchio)) {
+                nuovoPescato = g.selezionaNemico();
+            }
+
+            this.nemicoCorrente = nuovoPescato;
+
+            caricaDatiPartita();
+            caricaImmaginiNemici();
+
+        } catch (Exception e) {
+            System.out.println("Errore: " + e.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,9 +211,11 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         btnPhantom = new javax.swing.JButton();
         lblnomePersonaggio = new javax.swing.JLabel();
         lblnomeNemico = new javax.swing.JLabel();
+        lblImmagine = new javax.swing.JLabel();
+        lblImmagineN = new javax.swing.JLabel();
+        btnsalvaSer = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        btnsalvaPartita = new javax.swing.JButton();
+        btnsalvaCSV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -98,7 +243,7 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         lblStanchezza.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         lblStanchezza.setText("0");
         getContentPane().add(lblStanchezza);
-        lblStanchezza.setBounds(240, 550, 8, 16);
+        lblStanchezza.setBounds(240, 550, 30, 16);
 
         lblSete.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         lblSete.setText("0");
@@ -161,55 +306,162 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
 
         btnZone.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         btnZone.setText("ZONE");
+        btnZone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZoneActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnZone);
         btnZone.setBounds(300, 550, 150, 32);
 
         lblforzaFisicaNemico.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         lblforzaFisicaNemico.setText("0");
         getContentPane().add(lblforzaFisicaNemico);
-        lblforzaFisicaNemico.setBounds(910, 500, 8, 16);
+        lblforzaFisicaNemico.setBounds(910, 500, 40, 16);
 
         btnPhantom.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         btnPhantom.setText("Phantom Shot");
+        btnPhantom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhantomActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPhantom);
         btnPhantom.setBounds(300, 600, 150, 32);
 
         lblnomePersonaggio.setText("...");
         getContentPane().add(lblnomePersonaggio);
-        lblnomePersonaggio.setBounds(180, 110, 9, 16);
+        lblnomePersonaggio.setBounds(150, 110, 130, 16);
 
         lblnomeNemico.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         lblnomeNemico.setText("...");
         getContentPane().add(lblnomeNemico);
-        lblnomeNemico.setBounds(830, 110, 9, 20);
+        lblnomeNemico.setBounds(790, 110, 140, 20);
+        getContentPane().add(lblImmagine);
+        lblImmagine.setBounds(140, 130, 230, 310);
+        getContentPane().add(lblImmagineN);
+        lblImmagineN.setBounds(760, 140, 200, 300);
 
-        jLabel7.setText("jLabel7");
+        btnsalvaSer.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnsalvaSer.setText("Ser");
+        btnsalvaSer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalvaSerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnsalvaSer);
+        btnsalvaSer.setBounds(350, 60, 110, 23);
+
+        jLabel7.setText("Salva partita");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(140, 130, 230, 310);
+        jLabel7.setBounds(490, 20, 70, 16);
 
-        jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(760, 140, 200, 300);
-
-        btnsalvaPartita.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        btnsalvaPartita.setText("Salva");
-        getContentPane().add(btnsalvaPartita);
-        btnsalvaPartita.setBounds(450, 20, 170, 23);
+        btnsalvaCSV.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        btnsalvaCSV.setText("CSV");
+        btnsalvaCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalvaCSVActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnsalvaCSV);
+        btnsalvaCSV.setBounds(570, 60, 100, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSnackActionPerformed
-        // TODO add your handling code here:
+        int nuovaSete = player.getSete() - 5;
+        if (player.getSnack() > 0) {
+            player.mangiaSnack();
+
+            // Aggiorno solo i numeri che l'utente vede a schermo
+            lblSnack.setText(String.valueOf(player.getSnack()));
+            lblStanchezza.setText(String.valueOf(player.getStanchezza()));
+            lblSete.setText(String.valueOf(player.getSete()));
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Non hai snack a disposizione!");
+        }
     }//GEN-LAST:event_btnSnackActionPerformed
 
     private void btnBibitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBibitaActionPerformed
-        // TODO add your handling code here:
+        int nuovaStanchezza = player.getStanchezza() - 5;
+        if (player.getBibita() > 0) {
+            player.beviBibita();
+
+            // Aggiorno solo i numeri che l'utente vede a schermo
+            lblBibita.setText(String.valueOf(player.getBibita()));
+            lblSete.setText(String.valueOf(player.getSete()));
+            lblStanchezza.setText(String.valueOf(player.getStanchezza()));
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Non hai bibite a disposizione!");
+        }
     }//GEN-LAST:event_btnBibitaActionPerformed
 
     private void btnAbilitàSpecialeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbilitàSpecialeActionPerformed
-        // TODO add your handling code here:
+        int dannoBase = player.getDannoPersonaggio();
+        player.setStanchezza(player.getStanchezza() + 10);
+        player.setSete(player.getSete() + 5);
+        eseguiTurno(dannoBase);
     }//GEN-LAST:event_btnAbilitàSpecialeActionPerformed
+
+    private void btnZoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZoneActionPerformed
+
+        String nome = player.getNome();
+        int damage = 0;
+
+        if (nome.equals("Kagami")) {
+            Kagami k = (Kagami) player;
+            k.attivaZone();
+            damage = k.getDannoPersonaggio();
+        } else if (nome.equals("Aomine")) {
+            Aomine a = (Aomine) player;
+            a.attivaZone();
+            damage = a.getDannoPersonaggio();
+        } else if (nome.equals("Akashi")) {
+            Akashi ak = (Akashi) player;
+            ak.attivaZone();
+            damage = ak.getDannoPersonaggio();
+        }
+
+        if (damage <= 0) {
+            damage = 5;
+        }
+
+        eseguiTurno(damage);
+
+    }//GEN-LAST:event_btnZoneActionPerformed
+
+    private void btnsalvaSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvaSerActionPerformed
+        FileManager.salvaSer(this.player, this.nemicoCorrente);
+        javax.swing.JOptionPane.showMessageDialog(this, "Salvato!");
+    }//GEN-LAST:event_btnsalvaSerActionPerformed
+
+    private void btnsalvaCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvaCSVActionPerformed
+        FileManager.salvaCSV(this.player, this.nemicoCorrente);
+        javax.swing.JOptionPane.showMessageDialog(this, "Salvato!");
+    }//GEN-LAST:event_btnsalvaCSVActionPerformed
+
+    private void btnPhantomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhantomActionPerformed
+
+        int damage = 0;
+
+        if (player.getNome().equals("Kuroko")) {
+
+            Kuroko k = (Kuroko) player;
+
+            k.phantomShoot(nemicoCorrente);
+            damage = k.getDannoPersonaggio();
+
+            JOptionPane.showMessageDialog(this, "PHANTOM SHOOT!");
+
+            lblforzaFisicaNemico.setText(nemicoCorrente.getVita() + "");
+
+            eseguiTurno(damage);
+        }
+
+    }//GEN-LAST:event_btnPhantomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,8 +484,6 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interfaccia_Incontro().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -242,7 +492,8 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     private javax.swing.JButton btnPhantom;
     private javax.swing.JButton btnSnack;
     private javax.swing.JButton btnZone;
-    private javax.swing.JButton btnsalvaPartita;
+    private javax.swing.JButton btnsalvaCSV;
+    private javax.swing.JButton btnsalvaSer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -250,8 +501,9 @@ public class Interfaccia_Incontro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblBibita;
+    private javax.swing.JLabel lblImmagine;
+    private javax.swing.JLabel lblImmagineN;
     private javax.swing.JLabel lblSete;
     private javax.swing.JLabel lblSnack;
     private javax.swing.JLabel lblStanchezza;

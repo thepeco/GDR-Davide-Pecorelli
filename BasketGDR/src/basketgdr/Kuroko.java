@@ -13,15 +13,21 @@ public class Kuroko extends Personaggio implements Serializable{
     private Nemico n;
     private boolean phantomShootAttivo;
     
-    public Kuroko (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio, Nemico n){
+    public Kuroko (int forzaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio, int bibita, int snack){
         
-        super(fozaFisica,sete,stanchezza,nome,dannoPersonaggio);
+        super(forzaFisica,sete,stanchezza,nome,dannoPersonaggio,bibita,snack);
         
         this.forzaFisica = forzaFisica;
         this.sete = sete;
         this.stanchezza = stanchezza;
         this.nome = nome;
         this.dannoPersonaggio = dannoPersonaggio;
+        this.bibita=bibita;
+        this.snack=snack;
+    }
+    
+    public void setNemico(Nemico n){
+        
         this.n = n;
     }
     
@@ -42,7 +48,7 @@ public class Kuroko extends Personaggio implements Serializable{
     
         System.out.println("Vanishing Drive!");
         //Togli la vita del nemico usando il dannoPersonaggio
-        return n.setVita(20);
+        return n.setVita(25);
         
     }
     
@@ -50,7 +56,7 @@ public class Kuroko extends Personaggio implements Serializable{
     
     public boolean phantomShoot(Nemico n){
         
-       return n.setVita(40);
+       return n.setVita(50);
         
     }
   }

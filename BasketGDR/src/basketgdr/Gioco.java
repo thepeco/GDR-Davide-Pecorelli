@@ -19,9 +19,7 @@ public class Gioco {
     public static int turniVinti;
     public static int turniPersi;
     
-    public void Gioco (Personaggio playerCorrente){
-        
-        player = playerCorrente;
+    public Gioco(){
         
     }
     
@@ -30,43 +28,43 @@ public class Gioco {
         return player;
     }
     
-    public String selezionaNemico () throws Exception{ //Estrazione casuale nemici
+    public Nemico selezionaNemico () throws Exception{ //Estrazione casuale nemici
         
         Scanner s = new Scanner(new File("listaNemici.txt"));
         ArrayList<String> nemici = new ArrayList<>();
         
+        while (s.hasNext()) {
+            
+            nemici.add(s.next());
+            
+        }
+        
         Collections.shuffle(nemici);
-        System.out.println("Nome: " + nemici.get(0)); 
+        System.out.println("Nome: " + nemici.get(0));
+        
         nomeEstratto = nemici.get(0);
         
-        if(nomeEstratto == "Satsuki_Momoi" || nomeEstratto == "Riko_Aida"){ //gestisco qua gli amici e dico questo!
-            
-            player.ricaricaStatistiche();
-            enemie = null;
-        }
         
-        else{
-            if (nomeEstratto == "Ryota Kise"){
-                    enemie =new Nemico("Ryota Kise",1,1);
+            if (nomeEstratto.contains("Kise")){
+                    enemie =new Nemico("Ryota Kise",70,17);
             }
-            if (nomeEstratto == "Shintaro Midorima"){
-                    enemie =new Nemico("Shintaro Midorima",1,1);
+            if (nomeEstratto.contains("Midorima")){
+                    enemie =new Nemico("Midorima",75,15);
             }
-            if(nomeEstratto=="Atsushi Murasakibara"){
-                enemie = new Nemico("Atsushi Murasakibara",1,1);
+            if(nomeEstratto.contains("Murasakibara")){
+                enemie = new Nemico("Murasakibara",85,20);
             }
-            if(nomeEstratto=="Tatsuya Himuro"){
-                enemie = new Nemico("Ttsuya Himuno",1,1);
+            if(nomeEstratto.contains("Himuro")){
+                enemie = new Nemico("Himuro",65,14);
             }
-            if(nomeEstratto=="Makoto Hanamiya"){
-                enemie = new Nemico("Makoto Hanamiya",1,1);
+            if(nomeEstratto.contains("Hanamiya")){
+                enemie = new Nemico("Hanamiya",60,13);
             }
-            if(nomeEstratto=="Papa Mbaye Siki"){
-                enemie = new Nemico("Papa Mbaye Siki",1,1);
+            if(nomeEstratto.contains("Hayama")){
+                enemie = new Nemico("Hayama",62,13);
             }
-        }
         
-        return nomeEstratto;
+        return enemie;
     }
     
     public Nemico getEnemie() {

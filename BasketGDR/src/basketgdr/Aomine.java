@@ -13,18 +13,21 @@ public class Aomine extends Personaggio implements Serializable{
     private Nemico n;
     private boolean zoneAttiva;
     
-    public Aomine (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean zoneAttiva, Nemico n){
+    public Aomine (int forzaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean zoneAttiva,int bibita, int snack){
         
-        super(fozaFisica,sete,stanchezza,nome,dannoPersonaggio);
+        super(forzaFisica,sete,stanchezza,nome,dannoPersonaggio,bibita,snack);
         
         this.forzaFisica = forzaFisica;
         this.sete = sete;
         this.stanchezza = stanchezza;
         this.nome = nome;
         this.dannoPersonaggio = dannoPersonaggio;
-        this.n = n;
         this.zoneAttiva = zoneAttiva;
         
+    }
+    public void setNemico(Nemico n){
+        
+        this.n = n;
     }
     
     @Override
@@ -50,7 +53,7 @@ public class Aomine extends Personaggio implements Serializable{
     
     public void attivaZone(){
         
-        forzaFisica = forzaFisica * 2;
+        forzaFisica = forzaFisica + 55;
         sete = 0;
         stanchezza = 0;
         dannoPersonaggio = 50;

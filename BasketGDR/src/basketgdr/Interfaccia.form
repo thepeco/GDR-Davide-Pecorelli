@@ -28,7 +28,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Davide\Desktop\GDR-Davide-Pecorelli\BasketGDR\Aomine.png"/>
+          <Image iconType="3" name="/Immagini/Aomine.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel3"/>
       </Properties>
@@ -41,7 +41,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Davide\Desktop\GDR-Davide-Pecorelli\BasketGDR\Kuroko.png"/>
+          <Image iconType="3" name="/Immagini/Kuroko.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
@@ -54,7 +54,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Davide\Desktop\GDR-Davide-Pecorelli\BasketGDR\Kagami.png"/>
+          <Image iconType="3" name="/Immagini/Kagami.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -66,7 +66,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Davide\Desktop\GDR-Davide-Pecorelli\BasketGDR\Akshi.png"/>
+          <Image iconType="3" name="/Immagini/Akashi.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
@@ -306,25 +306,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tempus Sans ITC" size="18" style="2"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Davide\Desktop\GDR-Davide-Pecorelli\BasketGDR\Sfondo.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Sejiuro Akashi"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="-50" width="1340" height="880"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel13"/>
@@ -332,6 +313,32 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="730" y="330" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCaricaSer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Carica ser"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCaricaSerActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="800" y="730" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCaricaCSV">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Carica CSV"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCaricaCSVActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="440" y="730" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

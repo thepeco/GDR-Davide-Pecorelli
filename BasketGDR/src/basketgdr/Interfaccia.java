@@ -51,24 +51,25 @@ public class Interfaccia extends javax.swing.JFrame {
         btncaratteristicheAomine = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btnCaricaSer = new javax.swing.JButton();
+        btnCaricaCSV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\GDR-Davide-Pecorelli\\BasketGDR\\Aomine.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Aomine.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 380, 200, 280));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\GDR-Davide-Pecorelli\\BasketGDR\\Kuroko.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kuroko.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 200, 310));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\GDR-Davide-Pecorelli\\BasketGDR\\Kagami.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Kagami.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 280, 340));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\GDR-Davide-Pecorelli\\BasketGDR\\Akshi.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/Akashi.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 250, -1));
 
@@ -181,14 +182,24 @@ public class Interfaccia extends javax.swing.JFrame {
         jLabel7.setText("Tetsuya Kuroko");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 130, 20));
 
-        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\GDR-Davide-Pecorelli\\BasketGDR\\Sfondo.png")); // NOI18N
-        jLabel1.setText("Sejiuro Akashi");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -50, 1340, 880));
-
         jLabel13.setText("jLabel13");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
+
+        btnCaricaSer.setText("Carica ser");
+        btnCaricaSer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaricaSerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCaricaSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 730, -1, -1));
+
+        btnCaricaCSV.setText("Carica CSV");
+        btnCaricaCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaricaCSVActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCaricaCSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 730, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -266,24 +277,32 @@ public class Interfaccia extends javax.swing.JFrame {
             return;
         }
 
-        // 1. Prepariamo la sessione e peschiamo il nemico random
+        
         Gioco partita = new Gioco();
         try {
             partita.selezionaNemico();
         } catch (Exception e) {
         }
-        Nemico n = partita.getEnemie();
+        Nemico n = null;
+        try {
+            n = partita.selezionaNemico();
+        } catch (Exception ex) {
+            System.getLogger(Interfaccia.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
 
-        // 2. Creiamo il personaggio scelto (Senza switch)
+        
         Personaggio p = null;
         if (personaggioSelezionato.equals("Kagami")) {
-            p = new Kagami(100, 0, 0, "Kagami", 20, false, n);
+            p = new Kagami(100, 0, 0, "Kagami", 20, false, 0, 1);
         }
         if (personaggioSelezionato.equals("Akashi")) {
-            p = new Akashi(100, 0, 0, "Akashi", 25, false, n);
+            p = new Akashi(100, 0, 0, "Akashi", 25, false, 1, 1);
         }
         if (personaggioSelezionato.equals("Aomine")) {
-            p = new Aomine(100, 0, 0, "Aomine", 22, false, n);
+            p = new Aomine(100, 0, 0, "Aomine", 22, false, 1, 0);
+        }
+        if (personaggioSelezionato.equals("Kuroko")) {
+            p = new Kuroko(85, 0, 0, "Kuroko", 25, 1, 0);
         }
 
         // 3. Lanciamo la battaglia
@@ -291,6 +310,40 @@ public class Interfaccia extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnCaricaSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaSerActionPerformed
+
+        Object[] dati = FileManager.caricaSer();
+
+        if (dati != null) {
+            
+            Personaggio p = (Personaggio) dati[0];
+            Nemico n = (Nemico) dati[1];
+
+            
+            Interfaccia_Incontro incontro = new Interfaccia_Incontro(p, n);
+            incontro.setVisible(true);
+            this.dispose(); 
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Errore: File .ser non trovato o corrotto!");
+        }
+    }//GEN-LAST:event_btnCaricaSerActionPerformed
+
+    private void btnCaricaCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaCSVActionPerformed
+
+        Object[] dati = FileManager.caricaCSV();
+
+        if (dati != null) {
+            Personaggio p = (Personaggio) dati[0];
+            Nemico n = (Nemico) dati[1];
+
+            Interfaccia_Incontro incontro = new Interfaccia_Incontro(p, n);
+            incontro.setVisible(true);
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Errore: File .csv non trovato!");
+        }
+    }//GEN-LAST:event_btnCaricaCSVActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,6 +372,8 @@ public class Interfaccia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCaratteristicheKuroko;
+    private javax.swing.JButton btnCaricaCSV;
+    private javax.swing.JButton btnCaricaSer;
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btncaratteristicheAkashi;
     private javax.swing.JButton btncaratteristicheAomine;
@@ -327,7 +382,6 @@ public class Interfaccia extends javax.swing.JFrame {
     private javax.swing.JButton btnselezionaAomine;
     private javax.swing.JButton btnselezionaKagami;
     private javax.swing.JButton btnselezionaKuroko;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

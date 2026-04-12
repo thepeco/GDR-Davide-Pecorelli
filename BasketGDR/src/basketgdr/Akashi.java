@@ -13,17 +13,23 @@ public class Akashi extends Personaggio implements Serializable{
     private Nemico n;
     private boolean zoneAttiva;
     
-    public Akashi (int fozaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean zoneAttiva, Nemico n){
+    public Akashi (int forzaFisica, int sete, int stanchezza, String nome, int dannoPersonaggio,boolean zoneAttiva, int bibita, int snack){
         
-        super(fozaFisica,sete,stanchezza,nome,dannoPersonaggio);
+        super(forzaFisica,sete,stanchezza,nome,dannoPersonaggio,bibita,snack);
         
         this.forzaFisica = forzaFisica;
         this.sete = sete;
         this.stanchezza = stanchezza;
         this.nome = nome;
         this.dannoPersonaggio = dannoPersonaggio;
-        this.n = n;
         this.zoneAttiva = zoneAttiva;
+        this.bibita=bibita;
+        this.snack=snack;
+    }
+    
+    public void setNemico(Nemico n){
+        
+        this.n = n;
     }
     
     @Override
@@ -47,7 +53,7 @@ public class Akashi extends Personaggio implements Serializable{
     
     public void attivaZone(){
         
-        forzaFisica = forzaFisica * 2;
+        forzaFisica = forzaFisica + 50;
         sete = 0;
         stanchezza = 0;
         dannoPersonaggio = 55;
